@@ -14,6 +14,9 @@ let num         = digit+ ( '.' digit+)?  ('E' ('+'|'-')? digit+ )?
 let whitespace  = [' ' '\t']
 let newline     = "\n\r" | '\n' | '\r'
 
+let char = ['a'-'z']|['A'-'Z']
+let charString = char+
+
 // We define now the rules for recognising and building tokens
 // for each of the tokens of our language we need a rule
 // NOTE: rules are applied in order top-down.
@@ -31,4 +34,24 @@ rule tokenize = parse
 | '^'           { POW }
 | '('           { LPAR }
 | ')'           { RPAR }
+| "skip"        { SKIP }
+| ';'           { SEMICOLON }
+| "->"          {ARROW}
+| "[]"          {BOX}
+| ":="          {ASSIGN}
+| "["           {LLIST}
+| "]"           {RLIST}
+| "if"          {IF}
+| "fi"          {FI}
+| "do"          {DO}
+| "od"          {OD}
+| "false"       { FALSE }
+| "true"        { TRUE }
+| '&'           {AND}
+| '|'           {OR}
+| '!'            {NOT}
+| '='            {EQUAL}
+| '<'            {LESS}
+| '>'            {GREATER}
 | eof           { EOF }
+| charString    { VAR((LexBuffer<_>.LexemeString lexbuf)) }

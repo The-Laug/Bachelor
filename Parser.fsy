@@ -5,7 +5,8 @@ open AST
 
 // Declare the tokens (terminal symbols)
 %token <float> NUM
-%token TIMES DIV PLUS MINUS POW LPAR RPAR EOF
+%token <string> VAR
+%token TIMES DIV PLUS MINUS POW LPAR RPAR EOF SKIP SEMICOLON TRUE FALSE ARROW BOX ASSIGN LLIST RLIST IF FI DO OD NOT EQUAL LESS GREATER AND OR
 // NOTE: the actual formats of these tokens are defined in the lexer file
 //       as regular expressions
 
@@ -18,13 +19,64 @@ open AST
 
 // We declare the initial non-terminal symbol
 %start start
+%start startGCL
 
 // We specify the return type of each of then non-terminal symbols
 %type <AST.expr> start
 %type <AST.expr> expression
-
+%type <AST.Command> startGCL
+%type <AST.Command> command 
+%type <AST.Arithmetic> arithmetic 
+%type <AST.GuardedCommand> guardedCommand
+%type <AST.BooleanExpr> booleanExpr
 // Grammar productions
 %%
+startGCL: command EOF             { $1 }
+
+
+
+arithmetic:
+  | VAR                           {Var($1) }
+  | VAR LLIST arithmetic RLIST    {ArrayIndex($1,$3)}
+  | NUM                           { NumA($1) }
+  | arithmetic TIMES arithmetic   { Times($1,$3) }
+  | arithmetic DIV arithmetic     { Div($1,$3) }
+  | arithmetic PLUS arithmetic    { Plus($1,$3) }
+  | arithmetic MINUS arithmetic   { Minus($1,$3) }
+  | arithmetic POW arithmetic     { Pow($1,$3) }
+  | PLUS arithmetic               { UPlus($2) }
+  | MINUS arithmetic              { UMinus($2) }
+  | LPAR arithmetic RPAR          { ParsA($2)  }
+
+command:
+  | SKIP                                  {Skip}
+  | command SEMICOLON command             {Sequence($1,$3)}
+  | guardedCommand                        {GC($1)}
+  | VAR ASSIGN arithmetic                 {Assign($1,$3)}
+  | VAR LLIST arithmetic RLIST ASSIGN arithmetic {AssignArray($1,$3,$6)}
+  | IF guardedCommand FI                  {IfFi($2)}
+  | DO guardedCommand OD                  {DoOd($2)}
+guardedCommand:
+ | booleanExpr ARROW command              {IfThen($1,$3)}
+ | guardedCommand BOX guardedCommand      {ElseIf($1,$3)}
+
+booleanExpr:
+  | TRUE                                  {True}
+  | FALSE                                 {False}
+  | booleanExpr AND AND booleanExpr         {BandB($1,$4)}
+  | booleanExpr AND booleanExpr      {BbitandB($1,$3)}
+  | booleanExpr OR OR booleanExpr          {BorB($1,$4)}
+  | booleanExpr OR booleanExpr       {BbitorB($1,$3)}
+  | NOT booleanExpr                       {Negation($2)}
+  | arithmetic EQUAL arithmetic           {Equals($1,$3)}
+  | arithmetic NOT EQUAL arithmetic        {NOTEquals($1,$4)}
+  | arithmetic GREATER arithmetic      {LargerThan($1,$3)}
+  | arithmetic GREATER EQUAL arithmetic   {LargerOREqual($1,$4)}
+  | arithmetic LESS arithmetic        {LessThan($1,$3)}
+  | arithmetic LESS EQUAL arithmetic     {LessOREqual($1,$4)}
+  | LPAR booleanExpr RPAR                 {ParsB($2)}
+  
+
 
 // The first production in "formal" notation is
 // start -> expression
