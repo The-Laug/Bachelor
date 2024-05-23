@@ -156,7 +156,7 @@ domain setify" + (name) + " {
 
     if not (domainExists ("domain setify" + (name)) (filepath)) then
         writer.WriteLine(line)
-
+        
 
 
 
@@ -182,23 +182,24 @@ axiom iGreaterThanNGenericSum" + (count) + " {
     forall i:Int, N:Int::
         i > N ==> genericSum" + (count) + "(i,N) == 0
 }
-
-axiom rightRecursionGenericSum" + (count) + " {
-    forall i:Int, N: Int :: 
-        0 <= i < N ==> genericSum" + (count) + "(i,N) == genericSum" + (count) + "(i,N-1) + " + interpretInnerFunction(innerFunction,indexVariable,"N") + "
 }
+"
+// axiom rightRecursionGenericSum" + (count) + " {
+//     forall i:Int, N: Int :: 
+//         0 <= i < N ==> genericSum" + (count) + "(i,N) == genericSum" + (count) + "(i,N-1) + " + interpretInnerFunction(innerFunction,indexVariable,"N") + "
+// }
 
-axiom leftRecursionGenericSum" + (count) + " {
-    forall i:Int, N: Int :: 
-        0 <= i < N ==> genericSum" + (count) + "(i,N) == " + interpretInnerFunction(innerFunction,indexVariable,"i") + " + genericSum" + (count) + "(i+1,N)
-}
+// axiom leftRecursionGenericSum" + (count) + " {
+//     forall i:Int, N: Int :: 
+//         0 <= i < N ==> genericSum" + (count) + "(i,N) == " + interpretInnerFunction(innerFunction,indexVariable,"i") + " + genericSum" + (count) + "(i+1,N)
+// }
 
-    }
+//     }
     
     
     
     
-    "
+//     "
 
 
     if not (domainExists ("domain genericSum" + (indexVariable) + (count)) (filepath)) then
@@ -290,7 +291,7 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
         | _ -> 
             let count: string = string (sprintf "%d" (GlobalCounterModule.getCounter() ))
             genericSum(outputpath,indexVariable,innerFunc)
-            setifySum(outputpath,indexVariable,innerFunc,"genericSum" + count) |> ignore
+            // setifySum(outputpath,indexVariable,innerFunc,"genericSum" + count) |> ignore
             GlobalCounterModule.incrementCounter()
             sprintf "genericSum%s(%s, %s)" count lowerBound upperBound
     interpretTerm innerFunc
