@@ -283,12 +283,15 @@ let rec (|SubtractionMatch|_|) (str: string) =
 
 let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:string) (innerFunc:string) (summationpath): string =
     let outputpath = "./outputs/" + summationpath
+    let mutable intHolder = 0
     let rec interpretTerm (term:string) =
-        match term with
+        match term.Trim() with
         | (c: string) when c=indexVariable -> 
             simpleSumDomain (outputpath) |> ignore
             setifySum(outputpath,indexVariable,innerFunc,"simpleSum") |> ignore
             sprintf "simplesum(%s, %s)" lowerBound upperBound
+        | c when System.Int32.TryParse(c,&intHolder) -> 
+            sprintf "(%d*(%s-%s)+1)" intHolder lowerBound upperBound
         // | c when c = sprintf "%s^2" indexVariable -> 
         //     squareSumDomain (outputpath) |> ignore
         //     setifySum(outputpath,indexVariable,innerFunc.Replace("^2",sprintf "*%s" indexVariable),"squareSum") |> ignore
