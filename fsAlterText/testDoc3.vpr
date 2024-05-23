@@ -1,0 +1,15 @@
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+    // assert 2+2==3
+
+    // assert for j=0 to 2 sum (22333*j) == 2
+    assert for j=0 to 58 sum (j^2) == 66729
+    assert for j=0 to 21 sum (j) == 231    
+
+}

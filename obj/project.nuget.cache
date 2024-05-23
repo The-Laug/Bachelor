@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "sv7RwiP2sye9A/HrV+w1gpScvhrx/NBsc8EZiS+RDO3rM3GCVDO0yldbY9e3QfnEDsBuD4b5kXQwRD0voV5GzQ==",
+  "success": true,
+  "projectFilePath": "/Users/lauge/Desktop/bachelor/bachelor.fsproj",
+  "expectedPackageFiles": [
+    "/Users/lauge/.nuget/packages/fsharp.core/8.0.200/fsharp.core.8.0.200.nupkg.sha512"
+  ],
+  "logs": []
+}

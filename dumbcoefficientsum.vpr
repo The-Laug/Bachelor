@@ -1,0 +1,48 @@
+
+
+domain coefficientsums {
+    // uninterpreted function
+    function coefficientsum(i: Int, N: Int, C: Int): Int
+
+    axiom {
+        forall C:Int::
+            coefficientsum(0,0,C) == 0
+    }
+
+    axiom axiom1 {
+        forall i:Int, N: Int, C: Int:: 
+            0 <= i < N ==> coefficientsum(i,N,C) == coefficientsum(i,N-1,C) + C*N
+    }
+
+    axiom axiom2 {
+        forall i:Int, N: Int, C: Int:: 
+            0 <= i < N ==> coefficientsum(i,N,C) == C*i + coefficientsum(i+1,N,C)
+    }
+
+    axiom axiom3 {
+        forall i:Int, N: Int, C: Int:: 
+            coefficientsum(i,N,C) == coefficientsum(N,i,C)
+    }
+
+    // axiom axiom4 {
+    //     forall N: Int, C: Int:: 
+    //         coefficientsum(0,N,C) == (N*(N+1))/2
+    // }
+
+    axiom axiom5 {
+            forall i: Int, N: Int, C: Int:: 
+                i == N ==> coefficientsum(i,N,C) == i*C
+    }
+
+
+}
+
+method testCoefficientSum() {
+    // Test cases
+
+    assert coefficientsum(0,2,2) == 6
+    assert coefficientsum(0,0,7) == 0
+    
+
+    // Add more test cases as needed
+}
