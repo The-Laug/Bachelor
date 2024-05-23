@@ -227,6 +227,40 @@ let (|CoefficientMatch|_|) (indexVariable:string) (lowerBound) (upperBound) (str
         | _ -> None
 
 
+// let (|AdditionMatch|_|) (str: string) =
+//     let parts = str.Split('+')
+//     match parts with
+//         | [| firstTerm; rest |] -> Some(firstTerm,rest)
+//         | _ -> None
+
+
+let rec (|AdditionMatch|_|) (str: string) =
+    let parts = str.Split('+', 2) // Split only at the first occurrence of '+'
+    match parts with
+    | [| firstTerm; rest |] ->
+        match rest with
+        | AdditionMatch(innerFirst, innerRest) ->
+            Some(firstTerm, innerFirst + "+" + innerRest)
+        | _ ->
+            Some(firstTerm, rest)
+    | _ -> None
+
+
+
+
+let rec (|SubtractionMatch|_|) (str: string) =
+    let parts = str.Split('-', 2) // Split only at the first occurrence of '-'
+    match parts with
+    | [| firstTerm; rest |] ->
+        match rest with
+        | SubtractionMatch(innerFirst, innerRest) ->
+            Some(firstTerm, innerFirst + "-" + innerRest)
+        | _ ->
+            Some(firstTerm, rest)
+    | _ -> None
+
+
+
 
 
 
@@ -245,22 +279,29 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
             GlobalCounterModule.incrementCounter()
             sprintf "squaresum(%s, %s)" lowerBound upperBound
         | (CoefficientMatch indexVariable lowerBound upperBound interpretedSum) -> 
-            let count: string = string (sprintf "%d" (GlobalCounterModule.getCounter() ))
-            GlobalCounterModule.incrementCounter()
             let (coefficient,innerFunc) = interpretedSum
-            sprintf "%s*%s"  coefficient (interpretTerm innerFunc)
+            sprintf "%s * %s"  coefficient (interpretTerm innerFunc)
+        | (AdditionMatch interpretedSum) -> 
+            let (firstTerm: string,rest) = interpretedSum
+            sprintf "%s + %s"  (interpretTerm firstTerm) (interpretTerm rest)
+        | (SubtractionMatch interpretedSum) -> 
+            let (firstTerm: string,rest) = interpretedSum
+            sprintf "%s - %s"  (interpretTerm firstTerm) (interpretTerm rest)
         | _ -> 
             let count: string = string (sprintf "%d" (GlobalCounterModule.getCounter() ))
             genericSum(outputpath,indexVariable,innerFunc)
             setifySum(outputpath,indexVariable,innerFunc,"genericSum" + count) |> ignore
             GlobalCounterModule.incrementCounter()
             sprintf "genericSum%s(%s, %s)" count lowerBound upperBound
+    interpretTerm innerFunc
 
-    match innerFunc.Split('+') with
-    | terms ->
-        let interpretedTerms = terms |> Array.map interpretTerm
-        String.concat " + " interpretedTerms
 
+
+
+    // match innerFunc.Split('+') with
+    // | terms ->
+    //     let interpretedTerms = terms |> Array.map interpretTerm
+    //     String.concat " + " interpretedTerms
     // match innerFunc.Split('-') with
     // | terms ->
     //     let interpretedTerms = terms |> Array.map interpretTerm
