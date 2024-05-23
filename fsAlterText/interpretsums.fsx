@@ -68,6 +68,9 @@ axiom leftRecursion  {
 
 
 
+let powerFold (N: int) (I: string) : string =
+    List.init N (fun _ -> I)
+    |> List.reduce (fun acc elem -> acc + "*" + elem)
 
 
 
@@ -75,33 +78,33 @@ axiom leftRecursion  {
 
 
 
-let squareSumDomain (filepath)  =
+let powerSum (filepath) (power: int)  =
     // Add simplesum domain to the summationDomain.vpr file
     use writer: StreamWriter = File.AppendText(filepath)
-    let count: string = string (sprintf "%d" (GlobalCounterModule.getCounter() ))
-    if not (domainExists ("domain squareSums") (filepath)) then
+    let powerString = string power
+    if not (domainExists ("domain powerSumDomain" + powerString) (filepath)) then
         writer.WriteLine("
-domain squareSums {
+domain powerSumDomain" + (powerString) + " {
 // uninterpreted function
-function squaresum(i: Int, N: Int): Int
+function powerSum" + (powerString) + "(i: Int, N: Int): Int
 
-axiom emptySquareSum{
-    squaresum(0,0) == 0
+axiom emptyPowerSum" + powerString + "{
+    powerSum" + (powerString) + "(0,0) == 0
 }
 
-axiom iGreaterThanNSquareSum {
+axiom iGreaterThanNPowerSum" + powerString + " {
     forall i:Int, N:Int::
-        i > N ==> squaresum(i,N) == 0
+        i > N ==> powerSum" + (powerString) + "(i,N) == 0
 }
 
-axiom rightRecursionSquareSum {
+axiom rightRecursionPowerSum" + powerString + " {
     forall i:Int, N: Int :: 
-        0 <= i < N ==> squaresum(i,N) == squaresum(i,N-1) + N*N
+        0 <= i < N ==> powerSum" + (powerString) + "(i,N) == powerSum" + (powerString) + "(i,N-1) + " + (powerFold power "N") + "
 }
 
-axiom leftRecursionSquareSum {
+axiom leftRecursionPowerSum" + powerString + " {
     forall i:Int, N: Int :: 
-        0 <= i < N ==> squaresum(i,N) == i*i + squaresum(i+1,N)
+        0 <= i < N ==> powerSum" + (powerString) + "(i,N) == " + (powerFold power "i") + " + powerSum" + (powerString) + "(i+1,N)
 }
 }
 
@@ -220,6 +223,15 @@ axiom iGreaterThanNGenericSum" + (count) + " {
 
 
 
+let (|PowerMatch|_|) (indexVariable:string) (str: string) =
+    let mutable powermut = 0
+    let parts = str.Split('^')
+    match parts with
+        | [| indexVar; power |] when System.Int32.TryParse(power, &powermut) && indexVar=indexVariable -> Some(power)
+        | _ -> None
+
+
+
 let (|CoefficientMatch|_|) (indexVariable:string) (lowerBound) (upperBound) (str: string) =
     let mutable coefficientmut = 0
     let parts = str.Split('*')
@@ -266,6 +278,9 @@ let rec (|SubtractionMatch|_|) (str: string) =
 
 
 
+
+
+
 let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:string) (innerFunc:string) (summationpath): string =
     let outputpath = "./outputs/" + summationpath
     let rec interpretTerm (term:string) =
@@ -274,11 +289,15 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
             simpleSumDomain (outputpath) |> ignore
             setifySum(outputpath,indexVariable,innerFunc,"simpleSum") |> ignore
             sprintf "simplesum(%s, %s)" lowerBound upperBound
-        | c when c = sprintf "%s^2" indexVariable -> 
-            squareSumDomain (outputpath) |> ignore
-            setifySum(outputpath,indexVariable,innerFunc.Replace("^2",sprintf "*%s" indexVariable),"squareSum") |> ignore
-            GlobalCounterModule.incrementCounter()
-            sprintf "squaresum(%s, %s)" lowerBound upperBound
+        // | c when c = sprintf "%s^2" indexVariable -> 
+        //     squareSumDomain (outputpath) |> ignore
+        //     setifySum(outputpath,indexVariable,innerFunc.Replace("^2",sprintf "*%s" indexVariable),"squareSum") |> ignore
+        //     GlobalCounterModule.incrementCounter()
+        //     sprintf "squaresum(%s, %s)" lowerBound upperBound
+        | (PowerMatch indexVariable powerString) -> 
+            let power = int powerString
+            powerSum outputpath power |> ignore
+            sprintf "powerSum%s(%s,%s)"  (powerString.Trim()) lowerBound upperBound
         | (CoefficientMatch indexVariable lowerBound upperBound interpretedSum) -> 
             let (coefficient,innerFunc) = interpretedSum
             sprintf "%s * %s"  coefficient (interpretTerm innerFunc)

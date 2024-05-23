@@ -50,27 +50,27 @@ domain setifysimpleSum {
     
     
 
-domain squareSums {
+domain powerSumDomain2 {
 // uninterpreted function
-function squaresum(i: Int, N: Int): Int
+function powerSum2(i: Int, N: Int): Int
 
-axiom emptySquareSum{
-    squaresum(0,0) == 0
+axiom emptyPowerSum2{
+    powerSum2(0,0) == 0
 }
 
-axiom iGreaterThanNSquareSum {
+axiom iGreaterThanNPowerSum2 {
     forall i:Int, N:Int::
-        i > N ==> squaresum(i,N) == 0
+        i > N ==> powerSum2(i,N) == 0
 }
 
-axiom rightRecursionSquareSum {
+axiom rightRecursionPowerSum2 {
     forall i:Int, N: Int :: 
-        0 <= i < N ==> squaresum(i,N) == squaresum(i,N-1) + N*N
+        0 <= i < N ==> powerSum2(i,N) == powerSum2(i,N-1) + N*N
 }
 
-axiom leftRecursionSquareSum {
+axiom leftRecursionPowerSum2 {
     forall i:Int, N: Int :: 
-        0 <= i < N ==> squaresum(i,N) == i*i + squaresum(i+1,N)
+        0 <= i < N ==> powerSum2(i,N) == i*i + powerSum2(i+1,N)
 }
 }
 
@@ -78,26 +78,48 @@ axiom leftRecursionSquareSum {
 
 
 
-domain setifysquareSum {
+domain powerSumDomain3 {
+// uninterpreted function
+function powerSum3(i: Int, N: Int): Int
+
+axiom emptyPowerSum3{
+    powerSum3(0,0) == 0
+}
+
+axiom iGreaterThanNPowerSum3 {
+    forall i:Int, N:Int::
+        i > N ==> powerSum3(i,N) == 0
+}
+
+axiom rightRecursionPowerSum3 {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> powerSum3(i,N) == powerSum3(i,N-1) + N*N*N
+}
+
+axiom leftRecursionPowerSum3 {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> powerSum3(i,N) == i*i*i + powerSum3(i+1,N)
+}
+}
+
+
+
+
+
+domain genericSumj0 {
     // uninterpreted function
-    function setifySumsquareSum( lowerBound:Int, upperBound:Int) : Set[Int]
+    function genericSum0( lowerBound:Int, upperBound:Int) : Int
 
-    axiom setifyInSetsquareSum {
-        forall lowerBound:Int,upperBound: Int, j: Int ::
-            lowerBound<= j <=upperBound ==> j*j in setifySumsquareSum(lowerBound,upperBound)
-    }
-    
-    axiom setifyNotInSetsquareSum {
-        forall lowerBound:Int,upperBound: Int, j : Int ::
-            j < lowerBound || j > upperBound ==> !( j*j in setifySumsquareSum(lowerBound,upperBound))
-    }
+axiom emptyGenericSum0{
+    genericSum0(0,0) == 0
+}
 
-    }
-    
-    
-    
-    
-    
+axiom iGreaterThanNGenericSum0 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum0(i,N) == 0
+}
+}
+
 
 domain genericSumj1 {
     // uninterpreted function
@@ -129,77 +151,17 @@ axiom iGreaterThanNGenericSum2 {
 }
 
 
-domain genericSumj4 {
+domain genericSumj3 {
     // uninterpreted function
-    function genericSum4( lowerBound:Int, upperBound:Int) : Int
+    function genericSum3( lowerBound:Int, upperBound:Int) : Int
 
-axiom emptyGenericSum4{
-    genericSum4(0,0) == 0
+axiom emptyGenericSum3{
+    genericSum3(0,0) == 0
 }
 
-axiom iGreaterThanNGenericSum4 {
+axiom iGreaterThanNGenericSum3 {
     forall i:Int, N:Int::
-        i > N ==> genericSum4(i,N) == 0
-}
-}
-
-
-domain genericSumj5 {
-    // uninterpreted function
-    function genericSum5( lowerBound:Int, upperBound:Int) : Int
-
-axiom emptyGenericSum5{
-    genericSum5(0,0) == 0
-}
-
-axiom iGreaterThanNGenericSum5 {
-    forall i:Int, N:Int::
-        i > N ==> genericSum5(i,N) == 0
-}
-}
-
-
-domain genericSumj6 {
-    // uninterpreted function
-    function genericSum6( lowerBound:Int, upperBound:Int) : Int
-
-axiom emptyGenericSum6{
-    genericSum6(0,0) == 0
-}
-
-axiom iGreaterThanNGenericSum6 {
-    forall i:Int, N:Int::
-        i > N ==> genericSum6(i,N) == 0
-}
-}
-
-
-domain genericSumj7 {
-    // uninterpreted function
-    function genericSum7( lowerBound:Int, upperBound:Int) : Int
-
-axiom emptyGenericSum7{
-    genericSum7(0,0) == 0
-}
-
-axiom iGreaterThanNGenericSum7 {
-    forall i:Int, N:Int::
-        i > N ==> genericSum7(i,N) == 0
-}
-}
-
-
-domain genericSumj9 {
-    // uninterpreted function
-    function genericSum9( lowerBound:Int, upperBound:Int) : Int
-
-axiom emptyGenericSum9{
-    genericSum9(0,0) == 0
-}
-
-axiom iGreaterThanNGenericSum9 {
-    forall i:Int, N:Int::
-        i > N ==> genericSum9(i,N) == 0
+        i > N ==> genericSum3(i,N) == 0
 }
 }
 
