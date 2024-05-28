@@ -9,10 +9,6 @@ method try(x:Int, y: Int)
     assume 0 < i < N;
     // assert 2+2==3
 
-    // assert 22333*simplesum(0, 2) == 2
-    assert squaresum(0, 58) == 66729
-    assert simplesum(0, 21) == 231
-    assert simplesum(0, 21) == 230
-    
+    assert 2 * N*N*(21-i) * simplesum(i, 21) == 231    
 
 }

@@ -225,18 +225,33 @@ axiom iGreaterThanNGenericSum" + (count) + " {
 
 let (|PowerMatch|_|) (indexVariable:string) (str: string) =
     let mutable powermut = 0
-    let parts = str.Split('^')
+    let parts = str.Split('^', 2)
     match parts with
         | [| indexVar; power |] when System.Int32.TryParse(power, &powermut) && indexVar=indexVariable -> Some(power)
+        | _ -> None
+
+
+let (|PowerMatchAny|_|) (indexVariable:string) (str: string) =
+    let mutable powermut = 0
+    let parts = str.Split('^', 2)
+    match parts with
+        | [| powervar; power |] when System.Int32.TryParse(power, &powermut) && not (powervar=indexVariable) -> Some(power,powervar)
         | _ -> None
 
 
 
 let (|CoefficientMatch|_|) (indexVariable:string) (lowerBound) (upperBound) (str: string) =
     let mutable coefficientmut = 0
-    let parts = str.Split('*')
+    let parts = str.Split('*',2)
     match parts with
         | [| coefficient; innerFunction |] when System.Int32.TryParse(coefficient, &coefficientmut) -> Some(coefficient,innerFunction)
+        | _ -> None
+
+
+let (|CoefficientMatchAny|_|) (indexVariable:string) (lowerBound) (upperBound) (str: string) =
+    let parts = str.Split('*',2)
+    match parts with
+        | [| multiplicand; rest |] -> Some(multiplicand,rest)
         | _ -> None
 
 
@@ -274,7 +289,7 @@ let rec (|SubtractionMatch|_|) (str: string) =
 
 
 
-
+let strContainsVariable (s:string) = s |> Seq.exists Char.IsAsciiLetter
 
 
 
@@ -284,33 +299,43 @@ let rec (|SubtractionMatch|_|) (str: string) =
 let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:string) (innerFunc:string) (summationpath): string =
     let outputpath = "./outputs/" + summationpath
     let mutable intHolder = 0
+    let mutable charHolder = 'a'
     let rec interpretTerm (term:string) =
         match term.Trim() with
-        | (c: string) when c=indexVariable -> 
+        | (c: string) when c=indexVariable  -> 
             simpleSumDomain (outputpath) |> ignore
-            setifySum(outputpath,indexVariable,innerFunc,"simpleSum") |> ignore
+            setifySum(outputpath,indexVariable,indexVariable,"simpleSum") |> ignore
             sprintf "simplesum(%s, %s)" lowerBound upperBound
-        | c when System.Int32.TryParse(c,&intHolder) -> 
-            sprintf "(%d*(%s-%s)+1)" intHolder lowerBound upperBound
+        | c when System.Int32.TryParse(c,&intHolder)  -> 
+            sprintf "(%d*(%s-%s+1))" intHolder upperBound lowerBound
         // | c when c = sprintf "%s^2" indexVariable -> 
         //     squareSumDomain (outputpath) |> ignore
         //     setifySum(outputpath,indexVariable,innerFunc.Replace("^2",sprintf "*%s" indexVariable),"squareSum") |> ignore
         //     GlobalCounterModule.incrementCounter()
         //     sprintf "squaresum(%s, %s)" lowerBound upperBound
-        | (PowerMatch indexVariable powerString) -> 
+        | (PowerMatch indexVariable powerString) when (not (strContainsVariable powerString)) -> 
             let power = int powerString
             powerSum outputpath power |> ignore
             sprintf "powerSum%s(%s,%s)"  (powerString.Trim()) lowerBound upperBound
+        | (PowerMatchAny indexVariable powerString) -> 
+            let (power,powerVar) = powerString
+            sprintf "%s*(%s-%s)"  (powerFold (int power) powerVar) upperBound lowerBound
         | (CoefficientMatch indexVariable lowerBound upperBound interpretedSum) -> 
-            let (coefficient,innerFunc) = interpretedSum
-            sprintf "%s * %s"  coefficient (interpretTerm innerFunc)
+            let (coefficient,innerFunction) = interpretedSum
+            sprintf "%s * %s"  coefficient (interpretTerm innerFunction)
+        | (CoefficientMatchAny indexVariable lowerBound upperBound interpretedSum) -> 
+            let (multiplicand,rest) = interpretedSum
+            sprintf "%s * %s"  (interpretTerm multiplicand) (interpretTerm rest)
         | (AdditionMatch interpretedSum) -> 
             let (firstTerm: string,rest) = interpretedSum
             sprintf "%s + %s"  (interpretTerm firstTerm) (interpretTerm rest)
         | (SubtractionMatch interpretedSum) -> 
             let (firstTerm: string,rest) = interpretedSum
             sprintf "%s - %s"  (interpretTerm firstTerm) (interpretTerm rest)
+        | (c: string) when Char.TryParse(c,&charHolder)  -> 
+            sprintf "(%c*(%s-%s+1))" (charHolder) lowerBound upperBound
         | _ -> 
+            printf "%s |" (term.Trim())
             let count: string = string (sprintf "%d" (GlobalCounterModule.getCounter() ))
             genericSum(outputpath,indexVariable,innerFunc)
             // setifySum(outputpath,indexVariable,innerFunc,"genericSum" + count) |> ignore

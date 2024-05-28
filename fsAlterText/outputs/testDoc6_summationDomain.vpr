@@ -49,3 +49,18 @@ domain setifysimpleSum {
     
     
     
+
+domain genericSumj0 {
+    // uninterpreted function
+    function genericSum0( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum0{
+    genericSum0(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum0 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum0(i,N) == 0
+}
+}
+
