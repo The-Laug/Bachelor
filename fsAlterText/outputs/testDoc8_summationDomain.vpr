@@ -1,0 +1,210 @@
+
+domain simpleSums {
+// uninterpreted function
+function simplesum(i: Int, N: Int): Int
+
+axiom emptySum {
+    simplesum(0,0) == 0
+}
+
+axiom iGreaterThanN  {
+    forall i:Int, N:Int::
+        i > N ==> simplesum(i,N) == 0
+}
+
+axiom rightRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) == simplesum(i,N-1) + N
+}
+
+axiom leftRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) == i + simplesum(i+1,N)
+}
+
+
+}
+
+
+
+
+
+domain setifysimpleSum {
+    // uninterpreted function
+    function setifySumsimpleSum( lowerBound:Int, upperBound:Int) : Set[Int]
+
+    axiom setifyInSetsimpleSum {
+        forall lowerBound:Int,upperBound: Int, j: Int ::
+            lowerBound<= j <=upperBound ==> j in setifySumsimpleSum(lowerBound,upperBound)
+    }
+    
+    axiom setifyNotInSetsimpleSum {
+        forall lowerBound:Int,upperBound: Int, j : Int ::
+            j < lowerBound || j > upperBound ==> !( j in setifySumsimpleSum(lowerBound,upperBound))
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain powerSumDomain3 {
+// uninterpreted function
+function powerSum3(i: Int, N: Int): Int
+
+axiom emptyPowerSum3{
+    powerSum3(0,0) == 0
+}
+
+axiom iGreaterThanNPowerSum3 {
+    forall i:Int, N:Int::
+        i > N ==> powerSum3(i,N) == 0
+}
+
+axiom rightRecursionPowerSum3 {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> powerSum3(i,N) == powerSum3(i,N-1) + N*N*N
+}
+
+axiom leftRecursionPowerSum3 {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> powerSum3(i,N) == i*i*i + powerSum3(i+1,N)
+}
+}
+
+
+
+
+
+domain powerSumDomain2 {
+// uninterpreted function
+function powerSum2(i: Int, N: Int): Int
+
+axiom emptyPowerSum2{
+    powerSum2(0,0) == 0
+}
+
+axiom iGreaterThanNPowerSum2 {
+    forall i:Int, N:Int::
+        i > N ==> powerSum2(i,N) == 0
+}
+
+axiom rightRecursionPowerSum2 {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> powerSum2(i,N) == powerSum2(i,N-1) + N*N
+}
+
+axiom leftRecursionPowerSum2 {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> powerSum2(i,N) == i*i + powerSum2(i+1,N)
+}
+}
+
+
+
+
+
+domain powerSumDomain4 {
+// uninterpreted function
+function powerSum4(i: Int, N: Int): Int
+
+axiom emptyPowerSum4{
+    powerSum4(0,0) == 0
+}
+
+axiom iGreaterThanNPowerSum4 {
+    forall i:Int, N:Int::
+        i > N ==> powerSum4(i,N) == 0
+}
+
+axiom rightRecursionPowerSum4 {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> powerSum4(i,N) == powerSum4(i,N-1) + N*N*N*N
+}
+
+axiom leftRecursionPowerSum4 {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> powerSum4(i,N) == i*i*i*i + powerSum4(i+1,N)
+}
+}
+
+
+
+
+
+domain genericSumj0 {
+    // uninterpreted function
+    function genericSum0( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum0{
+    genericSum0(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum0 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum0(i,N) == 0
+}
+}
+
+
+domain genericSumj1 {
+    // uninterpreted function
+    function genericSum1( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum1{
+    genericSum1(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum1 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum1(i,N) == 0
+}
+}
+
+
+domain genericSumj2 {
+    // uninterpreted function
+    function genericSum2( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum2{
+    genericSum2(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum2 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum2(i,N) == 0
+}
+}
+
+
+domain genericSumj3 {
+    // uninterpreted function
+    function genericSum3( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum3{
+    genericSum3(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum3 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum3(i,N) == 0
+}
+}
+
+
+domain genericSumj4 {
+    // uninterpreted function
+    function genericSum4( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum4{
+    genericSum4(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum4 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum4(i,N) == 0
+}
+}
+
