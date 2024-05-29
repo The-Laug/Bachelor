@@ -5,11 +5,9 @@ method try()
     var N: Int
 
     assume 0<i<N
-    assume 2< N< 30
     // assume i==1
     // assert simplesum(0, i) < powerSum2(0,i)
     // assert simplesum(0, i)*simplesum(0, i) == powerSum2(0,i)
     assert simplesum(0, i-1)+simplesum(i, N) == simplesum(0, N)
 
     }
- 

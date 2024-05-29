@@ -296,15 +296,20 @@ let strContainsVariable (s:string) = s |> Seq.exists Char.IsAsciiLetter
 
 
 
-let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:string) (innerFunc:string) (summationpath): string =
+let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:string) (innerFunc:string) (summationpath) (isSet:bool ) : string =
     let outputpath = "./outputs/" + summationpath
     let mutable intHolder = 0
     let mutable charHolder = 'a'
+    printf "test"
     let rec interpretTerm (term:string) =
         match term.Trim() with
         | (c: string) when c=indexVariable  -> 
             simpleSumDomain (outputpath) |> ignore
             setifySum(outputpath,indexVariable,indexVariable,"simpleSum") |> ignore
+            if isSet then 
+                let count = GlobalCounterModule.getCounter()
+                GlobalCounterModule.incrementCounter() 
+                setifySum(outputpath,indexVariable,innerFunc,"simpleSum" + (string count)) |> ignore
             sprintf "simplesum(%s, %s)" lowerBound upperBound
         | c when System.Int32.TryParse(c,&intHolder)  -> 
             sprintf "(%d*(%s-%s+1))" intHolder upperBound lowerBound
@@ -363,16 +368,30 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
 let rec processLine (line: string) (summationPath)=
     let pattern = @"for ([a-z]+?)=(.*?) to (.*?) sum \((.*?)\)"
     let matchResult = Regex.Match(line, pattern)
+    // let setPattern = @"for ([a-z]+?)=(.*?) to (.*?) setsum \((.*?)\)"
+    // let matchSetResult = Regex.Match(line, setPattern)
     if matchResult.Success then
         let indexVariable = matchResult.Groups.[1].Value
         let lowerBound = matchResult.Groups.[2].Value
         let upperBound = matchResult.Groups.[3].Value
         let innerFunc = matchResult.Groups.[4].Value
-        let transformed = interpretSum indexVariable lowerBound upperBound innerFunc summationPath
+        printf "matched regex"
+        let transformed = interpretSum indexVariable lowerBound upperBound innerFunc summationPath true
         let line = line.Replace(matchResult.Value, transformed)
         processLine line summationPath
+    // elif matchSetResult.Success then
+    //     printf "matched regex SET"
+    //     let indexVariable = matchSetResult.Groups.[1].Value
+    //     let lowerBound = matchSetResult.Groups.[2].Value
+    //     let upperBound = matchSetResult.Groups.[3].Value
+    //     let innerFunc = matchSetResult.Groups.[4].Value
+    //     let transformed = interpretSum indexVariable lowerBound upperBound innerFunc summationPath false
+    //     let line = line.Replace(matchSetResult.Value, transformed)
+    //     processLine line summationPath 
     else
+        printf "oh no"
         line // Return the line unchanged if no match is found
+    
 
 
 let readLines filePath = System.IO.File.ReadLines(filePath);;
