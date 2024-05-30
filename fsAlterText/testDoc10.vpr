@@ -2,8 +2,17 @@ method try()
 {
     var i: Int
     var N: Int
-
+    var p: Int
+    var a: Int
     assume 0<i<N
-    assert for j=0 to 10 sum(j)
-    assert for j=0 to 10 setsum(j)
+    assert for j=0 to 10 sum (j) > 2
+    assert for j=0 to 10 setsum (j) > 2
+    assert for j=0 to 10 setsum (j) > 2
+    assert for j=0 to 10 setsum (j) > 2
+    assert for j=0 to 10 setsum (j^2) > 2
+    assert for j=0 to 10 setsum (j^a) > 2
+    assert for j=0 to 10 setsum (a^2) > 2
+    assert for j=0 to 10 setsum (a) > 2
+    assert for j=0 to 10 setsum (j*2) > 2
+    assert for j=0 to 10 setsum (j*2*j^2+p) > 2
     }

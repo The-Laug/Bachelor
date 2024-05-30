@@ -130,23 +130,23 @@ axiom leftRecursionPowerSum" + powerString + " {
 
 
 
-let setifySum (filepath, indexVariable : string,innerFunction :string,name :string)  =
+let setifySum (filepath, indexVariable : string,innerFunction :string,name :string,lowerBound,upperBound) :string =
     // Add simplesum domain to the summationDomain.vpr file
     use writer: StreamWriter = File.AppendText(filepath)
     let count: string = string (sprintf "%d" (GlobalCounterModule.getCounter() ))
     let line = "
 domain setify" + (name) + " {
     // uninterpreted function
-    function setifySum" + (name) + "( lowerBound:Int, upperBound:Int) : Set[Int]
+    function setifySum" + (name) + "(lowerBound:Int, upperBound:Int) : Multiset[Int]
 
     axiom setifyInSet" + (name) + " {
         forall lowerBound:Int,upperBound: Int, " + (indexVariable) + ": Int ::
-            lowerBound<= " + (indexVariable) + " <=upperBound ==> " + (innerFunction) + " in setifySum" + (name) + "(lowerBound,upperBound)
+            lowerBound<= " + (indexVariable) + " <=upperBound ==> (" + (innerFunction) + " in setifySum" + (name) + "(lowerBound,upperBound))>=1
     }
     
     axiom setifyNotInSet" + (name) + " {
         forall lowerBound:Int,upperBound: Int, " + (indexVariable) + " : Int ::
-            " + (indexVariable) + " < lowerBound || " + (indexVariable) + " > upperBound ==> !( " + (innerFunction) + " in setifySum" + (name) + "(lowerBound,upperBound))
+            " + (indexVariable) + " < lowerBound || " + (indexVariable) + " > upperBound ==> !( (" + (innerFunction) + " in setifySum" + (name) + "(lowerBound,upperBound))>=1 )
     }
 
     }
@@ -155,10 +155,9 @@ domain setify" + (name) + " {
     
     
     "
-
-
     if not (domainExists ("domain setify" + (name)) (filepath)) then
-        writer.WriteLine(line)
+        writer.WriteLine(line) 
+    "setifySum" + (name) + "(" + lowerBound + "," + upperBound + ")"
         
 
 
@@ -300,30 +299,37 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
     let outputpath = "./outputs/" + summationpath
     let mutable intHolder = 0
     let mutable charHolder = 'a'
-    printf "test"
     let rec interpretTerm (term:string) =
         match term.Trim() with
         | (c: string) when c=indexVariable  -> 
             simpleSumDomain (outputpath) |> ignore
-            setifySum(outputpath,indexVariable,indexVariable,"simpleSum") |> ignore
+            setifySum(outputpath,indexVariable,indexVariable,"simpleSum",lowerBound,upperBound) |> ignore
             if isSet then 
                 let count = GlobalCounterModule.getCounter()
                 GlobalCounterModule.incrementCounter() 
-                setifySum(outputpath,indexVariable,innerFunc,"simpleSum" + (string count)) |> ignore
-            sprintf "simplesum(%s, %s)" lowerBound upperBound
+                setifySum(outputpath,indexVariable,term.Trim(),"simpleSum" + (string count),lowerBound,upperBound)
+            else 
+                sprintf "simplesum(%s, %s)" lowerBound upperBound
         | c when System.Int32.TryParse(c,&intHolder)  -> 
+            if isSet then 
+                let count = GlobalCounterModule.getCounter()
+                GlobalCounterModule.incrementCounter() 
+                setifySum(outputpath,indexVariable,term.Trim(),"constantSum" + (string count),lowerBound,upperBound) |> ignore
             sprintf "(%d*(%s-%s+1))" intHolder upperBound lowerBound
-        // | c when c = sprintf "%s^2" indexVariable -> 
-        //     squareSumDomain (outputpath) |> ignore
-        //     setifySum(outputpath,indexVariable,innerFunc.Replace("^2",sprintf "*%s" indexVariable),"squareSum") |> ignore
-        //     GlobalCounterModule.incrementCounter()
-        //     sprintf "squaresum(%s, %s)" lowerBound upperBound
         | (PowerMatch indexVariable powerString) when (not (strContainsVariable powerString)) -> 
             let power = int powerString
             powerSum outputpath power |> ignore
+            if isSet then 
+                let count = GlobalCounterModule.getCounter()
+                GlobalCounterModule.incrementCounter() 
+                setifySum(outputpath,indexVariable,(powerFold (int power) indexVariable),"power" + (powerString.Trim()) + "Sum" + (string count),lowerBound,upperBound) |> ignore
             sprintf "powerSum%s(%s,%s)"  (powerString.Trim()) lowerBound upperBound
         | (PowerMatchAny indexVariable powerString) -> 
             let (power,powerVar) = powerString
+            if isSet then 
+                let count = GlobalCounterModule.getCounter()
+                GlobalCounterModule.incrementCounter() 
+                setifySum(outputpath,indexVariable,(powerFold (int power) powerVar),"power" + (power) + "SumAny" + (string count),lowerBound,upperBound) |> ignore
             sprintf "%s*(%s-%s)"  (powerFold (int power) powerVar) upperBound lowerBound
         | (CoefficientMatch indexVariable lowerBound upperBound interpretedSum) -> 
             let (coefficient,innerFunction) = interpretedSum
@@ -345,6 +351,8 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
             genericSum(outputpath,indexVariable,innerFunc)
             // setifySum(outputpath,indexVariable,innerFunc,"genericSum" + count) |> ignore
             GlobalCounterModule.incrementCounter()
+            // if isSet then 
+            //     setifySum(outputpath,indexVariable,innerFunc,"genericSum" + (string count)) |> ignore
             sprintf "genericSum%s(%s, %s)" count lowerBound upperBound
     interpretTerm innerFunc
 
@@ -368,28 +376,25 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
 let rec processLine (line: string) (summationPath)=
     let pattern = @"for ([a-z]+?)=(.*?) to (.*?) sum \((.*?)\)"
     let matchResult = Regex.Match(line, pattern)
-    // let setPattern = @"for ([a-z]+?)=(.*?) to (.*?) setsum \((.*?)\)"
-    // let matchSetResult = Regex.Match(line, setPattern)
+    let setPattern = @"for ([a-z]+?)=(.*?) to (.*?) setsum \((.*?)\)"
+    let matchSetResult = Regex.Match(line, setPattern)
     if matchResult.Success then
         let indexVariable = matchResult.Groups.[1].Value
         let lowerBound = matchResult.Groups.[2].Value
         let upperBound = matchResult.Groups.[3].Value
         let innerFunc = matchResult.Groups.[4].Value
-        printf "matched regex"
-        let transformed = interpretSum indexVariable lowerBound upperBound innerFunc summationPath true
+        let transformed = interpretSum indexVariable lowerBound upperBound innerFunc summationPath false
         let line = line.Replace(matchResult.Value, transformed)
         processLine line summationPath
-    // elif matchSetResult.Success then
-    //     printf "matched regex SET"
-    //     let indexVariable = matchSetResult.Groups.[1].Value
-    //     let lowerBound = matchSetResult.Groups.[2].Value
-    //     let upperBound = matchSetResult.Groups.[3].Value
-    //     let innerFunc = matchSetResult.Groups.[4].Value
-    //     let transformed = interpretSum indexVariable lowerBound upperBound innerFunc summationPath false
-    //     let line = line.Replace(matchSetResult.Value, transformed)
-    //     processLine line summationPath 
+    elif matchSetResult.Success then
+        let indexVariable = matchSetResult.Groups.[1].Value
+        let lowerBound = matchSetResult.Groups.[2].Value
+        let upperBound = matchSetResult.Groups.[3].Value
+        let innerFunc = matchSetResult.Groups.[4].Value
+        let transformed = interpretSum indexVariable lowerBound upperBound innerFunc summationPath true
+        let line = line.Replace(matchSetResult.Value, transformed)
+        processLine line summationPath 
     else
-        printf "oh no"
         line // Return the line unchanged if no match is found
     
 

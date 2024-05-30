@@ -31,16 +31,16 @@ axiom leftRecursion  {
 
 domain setifysimpleSum {
     // uninterpreted function
-    function setifySumsimpleSum( lowerBound:Int, upperBound:Int) : Set[Int]
+    function setifySumsimpleSum(lowerBound:Int, upperBound:Int) : Multiset[Int]
 
     axiom setifyInSetsimpleSum {
         forall lowerBound:Int,upperBound: Int, j: Int ::
-            lowerBound<= j <=upperBound ==> j in setifySumsimpleSum(lowerBound,upperBound)
+            lowerBound<= j <=upperBound ==> (j in setifySumsimpleSum(lowerBound,upperBound))>=1
     }
     
     axiom setifyNotInSetsimpleSum {
         forall lowerBound:Int,upperBound: Int, j : Int ::
-            j < lowerBound || j > upperBound ==> !( j in setifySumsimpleSum(lowerBound,upperBound))
+            j < lowerBound || j > upperBound ==> !( (j in setifySumsimpleSum(lowerBound,upperBound))>=1 )
     }
 
     }

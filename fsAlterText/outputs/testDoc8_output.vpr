@@ -3,8 +3,6 @@ method try()
 {
     var i: Int
     var N: Int
-    var j: Int
-    var k: Int
 
     assume 0 < i < N;
 
@@ -21,34 +19,34 @@ method try()
     assert simplesum(0, i) * (N*(0-i+1)) + (i*(0-i+1)) * simplesum(0, i) == N*i*(i+1)/2 + i*i*(i+1)/2
 
     // Summation with nested sums
-    assert genericSum0(0, 2) + (k*(0-2+1)) == 18
-    assert genericSum1(1, 3) * (k*(1-3+1)) == 90
+    // assert genericSum0(0, 2) + (k*(0-2+1))) == 18
+    // assert genericSum1(1, 3) * (k*(1-3+1))) == 90
 
-    // Edge cases and bounds
-    assert simplesum(0, 0) == 0
-    assert powerSum2(5,5) == 25
+    // // Edge cases and bounds
+    // assert simplesum(0, 0) == 0
+    // assert powerSum2(5,5) == 25
 
-    // Summation with constants and variables
-    assert (N*(0-4+1)) + simplesum(0, 4) + (1*(4-0+1)) == 5*N + 15
-    assert simplesum(0, i) + (N*(0-i+1)) == (i+1)*N + i*(i+1)/2
+    // // Summation with constants and variables
+    // assert (N*(0-4+1)) + simplesum(0, 4) + (1*(4-0+1)) == 5*N + 15
+    // assert simplesum(0, i) + (N*(0-i+1)) == (i+1)*N + i*(i+1)/2
 
-    // Complex expressions
-    assert j*(j*(3-0) + (1*(3-0+1))*(j + 2)) == 74
-    assert j*(j*(5-1) - simplesum(1, 5) + (1*(5-1+1))*(j + 3)) == 230
+    // // Complex expressions
+    // assert (j*(j*(3-0) + (1*(3-0+1))*(j + 2)) == 74
+    // assert (j*(j*(5-1) - simplesum(1, 5) + (1*(5-1+1))*(j + 3)) == 230
 
-    // Summation with conditions (if supported)
-    // assert genericSum2(0, 10) == 30
+    // // Summation with conditions (if supported)
+    // // assert genericSum2(0, 10) == 30
 
-    // Large bounds and factorial terms (if supported)
-    assert genericSum3(1, 10) == 4037913  // 1! + 2! + 3! + ... + 10!
+    // // Large bounds and factorial terms (if supported)
+    // assert genericSum3(1, 10) == 4037913  // 1! + 2! + 3! + ... + 10!
 
-    // Negative terms
-    assert simplesum(-5, 5) == 0
-    assert powerSum2(-3,3) == 28
+    // // Negative terms
+    // assert simplesum(-5, 5) == 0
+    // assert powerSum2(-3,3) == 28
 
-    // Summation with exponential functions (if supported)
-    // assert genericSum4(0, 3) == 15
+    // // Summation with exponential functions (if supported)
+    // // assert genericSum4(0, 3) == 15
 
-    // Product of summations
-    assert simplesum(0, 3) * simplesum(0, 2) == 36
+    // // Product of summations
+    // assert simplesum(0, 3) * simplesum(0, 2) == 36
 }
