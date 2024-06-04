@@ -8,7 +8,7 @@ method try()
     // assume i==1
     // assert simplesum(0, i) < powerSum2(0,i)
     // assert simplesum(0, i)*simplesum(0, i) == powerSum2(0,i)
-    assert simplesum(0,1)==1
-    // assert simplesum(0, i-1)+simplesum(i, N) == simplesum(0, N)
-
+    // assert simplesum(0, i-1) + simplesum(i, N) == simplesum(0, N)
+    assert simplesum(0, i) >2
+    assert simplesum(0, i) * (N*(0-i+1)) >2
     }

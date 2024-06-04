@@ -6,28 +6,14 @@ method try()
     var p: Int
     var a: Int
     assume 0<i<N
-    assert simplesum(0, 10) > 2
-    assert 1 in setifySumsimpleSum0(0,2)==1
-    assert 2 in setifySumsimpleSum0(0,2)==1
-    assert 1 in setifySumsimpleSum0(0,1)==1
-    assert 2 in setifySumsimpleSum0(1,2)==1
-
-    assert  (setifySumsimpleSum0(0,1) union setifySumsimpleSum0(1,2))
-
-
-
-    assert (1 in (setifySumsimpleSum0(0,1) union setifySumsimpleSum0(1,2))) == 1
-
-
-
-
-    assert setifySumsimpleSum0(0,2) == setifySumsimpleSum0(0,1) union setifySumsimpleSum0(1,2)
-    // assert setifySumsimpleSum1(0,10) > 2
-    // assert setifySumsimpleSum2(0,10) > 2
-    // assert powerSum2(0,10) > 2
-    // assert genericSum4(0, 10) > 2
-    // assert a*a*(10-0) > 2
-    // assert (a*(0-10+1)) > 2
-    // assert setifySumsimpleSum6(0,10) * (2*(10-0+1)) > 2
-    // assert setifySumsimpleSum8(0,10) * 2 * powerSum2(0,10) + (p*(0-10+1)) > 2
+    // assert (a*(2-25+1)) * simplesum(2, 25) + powerSum2(2,25) + (22*(25-2+1)) * (a*(2-25+1))> a
+    assert (a*(i-N+1)) > a
+    assert simplesum(i, N) + (1*(N-i+1)) > 0
+    assert (2 in setifySumsimpleSum0(0,10)) >=1
+    assert (Multiset(2) subset setifySumconstantSum1(0,10))
+    assert (2 in setifySumconstantSum2(0,10)) > 0
+    assert Multiset(2) subset setifySumconstantSum3(0,3) 
+    assert setifySumconstantSum4(0,3) == Multiset(2,2,2)
+    // assert Multiset(j*j) subset setifySumpower2Sum5(0,5) 
+    // assert Multiset(j*j) subset genericSum6(0, 5) 
     }

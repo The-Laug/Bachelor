@@ -222,7 +222,7 @@ axiom iGreaterThanNGenericSum" + (count) + " {
 
 
 
-let (|PowerMatch|_|) (indexVariable:string) (str: string) =
+let (|IndexIntPowerMatch|_|) (indexVariable:string) (str: string) =
     let mutable powermut = 0
     let parts = str.Split('^', 2)
     match parts with
@@ -230,11 +230,27 @@ let (|PowerMatch|_|) (indexVariable:string) (str: string) =
         | _ -> None
 
 
-let (|PowerMatchAny|_|) (indexVariable:string) (str: string) =
+let (|AnyIntPowerMatch|_|) (indexVariable:string) (str: string) =
     let mutable powermut = 0
     let parts = str.Split('^', 2)
     match parts with
         | [| powervar; power |] when System.Int32.TryParse(power, &powermut) && not (powervar=indexVariable) -> Some(power,powervar)
+        | _ -> None
+
+
+let (|IndexVarPowerMatch|_|) (indexVariable:string) (str: string) =
+    let mutable powermut = 0
+    let parts = str.Split('^', 2)
+    match parts with
+        | [| indexVar; power |] when indexVar=indexVariable -> Some(power)
+        | _ -> None
+
+
+let (|AnyVarPowerMatch|_|) (indexVariable:string) (str: string) =
+    let mutable powermut = 0
+    let parts = str.Split('^', 2)
+    match parts with
+        | [| powervar; power |] when  not (powervar=indexVariable) -> Some(power,powervar)
         | _ -> None
 
 
@@ -301,7 +317,7 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
     let mutable charHolder = 'a'
     let rec interpretTerm (term:string) =
         match term.Trim() with
-        | (c: string) when c=indexVariable  -> 
+        | (c: string) when c=indexVariable  -> // SimpleSum
             simpleSumDomain (outputpath) |> ignore
             setifySum(outputpath,indexVariable,indexVariable,"simpleSum",lowerBound,upperBound) |> ignore
             if isSet then 
@@ -310,27 +326,30 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
                 setifySum(outputpath,indexVariable,term.Trim(),"simpleSum" + (string count),lowerBound,upperBound)
             else 
                 sprintf "simplesum(%s, %s)" lowerBound upperBound
-        | c when System.Int32.TryParse(c,&intHolder)  -> 
+        | c when System.Int32.TryParse(c,&intHolder)  ->  // Constant sum
             if isSet then 
                 let count = GlobalCounterModule.getCounter()
                 GlobalCounterModule.incrementCounter() 
-                setifySum(outputpath,indexVariable,term.Trim(),"constantSum" + (string count),lowerBound,upperBound) |> ignore
-            sprintf "(%d*(%s-%s+1))" intHolder upperBound lowerBound
-        | (PowerMatch indexVariable powerString) when (not (strContainsVariable powerString)) -> 
+                setifySum(outputpath,indexVariable,term.Trim(),"constantSum" + (string count),lowerBound,upperBound)
+            else
+                sprintf "(%d*(%s-%s+1))" intHolder upperBound lowerBound
+        | (IndexIntPowerMatch indexVariable powerString) when (not (strContainsVariable powerString)) -> // where n is the indexvariable n^expression, where expression does not contain a ascii character
             let power = int powerString
             powerSum outputpath power |> ignore
             if isSet then 
                 let count = GlobalCounterModule.getCounter()
                 GlobalCounterModule.incrementCounter() 
-                setifySum(outputpath,indexVariable,(powerFold (int power) indexVariable),"power" + (powerString.Trim()) + "Sum" + (string count),lowerBound,upperBound) |> ignore
-            sprintf "powerSum%s(%s,%s)"  (powerString.Trim()) lowerBound upperBound
-        | (PowerMatchAny indexVariable powerString) -> 
+                setifySum(outputpath,indexVariable,(powerFold (int power) indexVariable),"power" + (powerString.Trim()) + "Sum" + (string count),lowerBound,upperBound)
+            else 
+                sprintf "powerSum%s(%s,%s)"  (powerString.Trim()) lowerBound upperBound
+        | (AnyIntPowerMatch indexVariable powerString) -> // where n is the indexvariable n^expression where expression can contain an ascii character
             let (power,powerVar) = powerString
             if isSet then 
                 let count = GlobalCounterModule.getCounter()
                 GlobalCounterModule.incrementCounter() 
-                setifySum(outputpath,indexVariable,(powerFold (int power) powerVar),"power" + (power) + "SumAny" + (string count),lowerBound,upperBound) |> ignore
-            sprintf "%s*(%s-%s)"  (powerFold (int power) powerVar) upperBound lowerBound
+                setifySum(outputpath,indexVariable,(powerFold (int power) powerVar),"power" + (power) + "SumAny" + (string count),lowerBound,upperBound) 
+            else 
+                sprintf "%s*(%s-%s)"  (powerFold (int power) powerVar) upperBound lowerBound
         | (CoefficientMatch indexVariable lowerBound upperBound interpretedSum) -> 
             let (coefficient,innerFunction) = interpretedSum
             sprintf "%s * %s"  coefficient (interpretTerm innerFunction)
@@ -352,7 +371,8 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
             // setifySum(outputpath,indexVariable,innerFunc,"genericSum" + count) |> ignore
             GlobalCounterModule.incrementCounter()
             // if isSet then 
-            //     setifySum(outputpath,indexVariable,innerFunc,"genericSum" + (string count)) |> ignore
+            //     setifySum(outputpath,indexVariable,term,"genericSum",lowerBound,upperBound) 
+            // else 
             sprintf "genericSum%s(%s, %s)" count lowerBound upperBound
     interpretTerm innerFunc
 

@@ -31,37 +31,16 @@ axiom leftRecursion  {
 
 domain setifysimpleSum {
     // uninterpreted function
-    function setifySumsimpleSum( lowerBound:Int, upperBound:Int) : Set[Int]
+    function setifySumsimpleSum(lowerBound:Int, upperBound:Int) : Multiset[Int]
 
     axiom setifyInSetsimpleSum {
         forall lowerBound:Int,upperBound: Int, j: Int ::
-            lowerBound<= j <=upperBound ==> j in setifySumsimpleSum(lowerBound,upperBound)
+            lowerBound<= j <=upperBound ==> (j in setifySumsimpleSum(lowerBound,upperBound))>=1
     }
     
     axiom setifyNotInSetsimpleSum {
         forall lowerBound:Int,upperBound: Int, j : Int ::
-            j < lowerBound || j > upperBound ==> !( j in setifySumsimpleSum(lowerBound,upperBound))
-    }
-
-    }
-    
-    
-    
-    
-    
-
-domain setifysimpleSum0 {
-    // uninterpreted function
-    function setifySumsimpleSum0( lowerBound:Int, upperBound:Int) : Set[Int]
-
-    axiom setifyInSetsimpleSum0 {
-        forall lowerBound:Int,upperBound: Int, j: Int ::
-            lowerBound<= j <=upperBound ==> j in setifySumsimpleSum0(lowerBound,upperBound)
-    }
-    
-    axiom setifyNotInSetsimpleSum0 {
-        forall lowerBound:Int,upperBound: Int, j : Int ::
-            j < lowerBound || j > upperBound ==> !( j in setifySumsimpleSum0(lowerBound,upperBound))
+            j < lowerBound || j > upperBound ==> !( (j in setifySumsimpleSum(lowerBound,upperBound))>=1 )
     }
 
     }
@@ -98,87 +77,3 @@ axiom leftRecursionPowerSum2 {
 
 
 
-
-domain setifysimpleSum1 {
-    // uninterpreted function
-    function setifySumsimpleSum1( lowerBound:Int, upperBound:Int) : Set[Int]
-
-    axiom setifyInSetsimpleSum1 {
-        forall lowerBound:Int,upperBound: Int, j: Int ::
-            lowerBound<= j <=upperBound ==> j in setifySumsimpleSum1(lowerBound,upperBound)
-    }
-    
-    axiom setifyNotInSetsimpleSum1 {
-        forall lowerBound:Int,upperBound: Int, j : Int ::
-            j < lowerBound || j > upperBound ==> !( j in setifySumsimpleSum1(lowerBound,upperBound))
-    }
-
-    }
-    
-    
-    
-    
-    
-
-domain setifysimpleSum2 {
-    // uninterpreted function
-    function setifySumsimpleSum2( lowerBound:Int, upperBound:Int) : Set[Int]
-
-    axiom setifyInSetsimpleSum2 {
-        forall lowerBound:Int,upperBound: Int, j: Int ::
-            lowerBound<= j <=upperBound ==> j in setifySumsimpleSum2(lowerBound,upperBound)
-    }
-    
-    axiom setifyNotInSetsimpleSum2 {
-        forall lowerBound:Int,upperBound: Int, j : Int ::
-            j < lowerBound || j > upperBound ==> !( j in setifySumsimpleSum2(lowerBound,upperBound))
-    }
-
-    }
-    
-    
-    
-    
-    
-
-domain setifysimpleSum3 {
-    // uninterpreted function
-    function setifySumsimpleSum3( lowerBound:Int, upperBound:Int) : Set[Int]
-
-    axiom setifyInSetsimpleSum3 {
-        forall lowerBound:Int,upperBound: Int, j: Int ::
-            lowerBound<= j <=upperBound ==> j in setifySumsimpleSum3(lowerBound,upperBound)
-    }
-    
-    axiom setifyNotInSetsimpleSum3 {
-        forall lowerBound:Int,upperBound: Int, j : Int ::
-            j < lowerBound || j > upperBound ==> !( j in setifySumsimpleSum3(lowerBound,upperBound))
-    }
-
-    }
-    
-    
-    
-    
-    
-
-domain setifysimpleSum4 {
-    // uninterpreted function
-    function setifySumsimpleSum4( lowerBound:Int, upperBound:Int) : Set[Int]
-
-    axiom setifyInSetsimpleSum4 {
-        forall lowerBound:Int,upperBound: Int, j: Int ::
-            lowerBound<= j <=upperBound ==> j in setifySumsimpleSum4(lowerBound,upperBound)
-    }
-    
-    axiom setifyNotInSetsimpleSum4 {
-        forall lowerBound:Int,upperBound: Int, j : Int ::
-            j < lowerBound || j > upperBound ==> !( j in setifySumsimpleSum4(lowerBound,upperBound))
-    }
-
-    }
-    
-    
-    
-    
-    

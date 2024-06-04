@@ -7,6 +7,7 @@ method try()
     // assume i==1
     // assert for j=0 to i sum (j) < for j=0 to i sum (j^2)
     // assert for j=0 to i sum (j)*for j=0 to i sum (j) == for j=0 to i sum (j^2)
-    assert for j=0 to i-1 sum (j)+for j=i to N sum (j) == for j=0 to N sum (j)
-
+    // assert for j=0 to i-1 sum (j) + for j=i to N sum (j) == for j=0 to N sum (j)
+    assert for j=0 to i sum (j) >2
+    assert for j=0 to i sum (j*N) >2
     }

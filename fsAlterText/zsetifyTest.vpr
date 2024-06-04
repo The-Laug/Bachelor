@@ -1,0 +1,10 @@
+method try() 
+{
+    var i: Int
+    var N: Int
+    var p: Int
+    var a: Int
+    assume 0<i<N
+    // assert for j=0 to 25 setsum (j) == for j=0 to 25 setsum (25-j)
+    assert for j=0 to 25 setsum (j) == for j=0 to 20 setsum (j) union for j=25 to 25 setsum (j)
+    }
