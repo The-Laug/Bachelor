@@ -1,12 +1,11 @@
 import "zsetifyTest_summationDomain.vpr"
 method try() 
 {
-    var i: Int
-    var N: Int
-    var p: Int
-    var a: Int
-    assume 0<i<N
-    // assert setifySumsimpleSum0(0,25) == setifySumconstantSum1(0,25) - setifySumsimpleSum2(0,25)
-    assert setifySumsimpleSum3(0,25) == setifySumsimpleSum4(0,20) union setifySumsimpleSum5(25,25)
-    assert Multiset[2] in setifySumconstantSum3(0,25)
+    var s1: Multiset[Int]
+    var s3: Multiset[Int]
+    var j:Int
+    var jp: Int
+    assert setifySumsimpleSum01() == setifySumsimpleSum12()
+    // assume 0<i<N
+    // assert setifySumsimpleSum23() subset ( setifySumsimpleSum34() union setifySumsimpleSum45() )
     }

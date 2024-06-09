@@ -1,0 +1,19 @@
+method try() 
+{
+    var a: Int
+    var b: Int
+    var c: Int
+    var d: Int
+    var e: Int
+    var f: Int
+    var j:Int
+    assume a>b 
+    assume j< -5
+    assert for i=a to b sum (i) == for i=0 to j+2 sum (i)
+    assert for i=c to d setsum (i^5) subset Multiset(2)
+
+    assert false
+    // assume 0<i<N
+    // assert for j=2 to 22 setsum (j) subset ( for j=0 to 19 setsum (j) union for j=20 to 25 setsum (j) )
+    }
+    // assert for i=0 to 22 setsum (2) == for i=0 to 10 setsum (2) union for i=10 to 22 setsum (2)
