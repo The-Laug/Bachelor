@@ -165,8 +165,10 @@ let setifySum (filepath, indexVariable : string,innerFunction :string,name :stri
     // Add simplesum domain to the summationDomain.vpr file
     use writer: StreamWriter = File.AppendText(filepath)
     let count: string = string (sprintf "%d" (GlobalCounterModule.getCounter() ))
-    let line = "
-domain setify" + (name) + " {
+    let line = ""
+
+    if name.StartsWith("constantSum") then 
+        line = "domain setify" + (name) + " {
     // uninterpreted function
     function setifySum" + (name) + (count) + "() : Multiset[Int]
 
@@ -190,7 +192,37 @@ domain setify" + (name) + " {
     
     
     
+    
     "
+    else 
+        line = 
+            "
+            domain setify" + (name) + " {
+            // uninterpreted function
+            function setifySum" + (name) + (count) + "() : Multiset[Int]
+
+            axiom setifyInSet" + (name) + " {
+                forall " + (indexVariable) + ": Int ::
+                    " + (lowerBound) + "<= " + (indexVariable) + " <=" + (upperBound) + " ==> (" + (innerFunction) + " in setifySum" + (name) + (count) + "())==1
+            }
+            
+            axiom setifyNotInSet" + (name) + " {
+                forall " + (indexVariable) + " : Int ::
+                    " + (indexVariable) + " < " + (lowerBound) + " ==> ( (" + (innerFunction) + " in setifySum" + (name) + (count) + "())==0 )
+            }
+
+            axiom setifyAlsoNotInSet" + (name) + " {
+                forall " + (indexVariable) + " : Int ::
+                    " + (indexVariable) + " > " + (upperBound) + " ==> ( (" + (innerFunction) + " in setifySum" + (name) + (count) + "())==0 )
+            }
+
+            }
+            
+            
+            
+            
+            
+            "
     if not (domainExists ("domain setify" + (name)) (filepath)) then
         writer.WriteLine(line) 
     "setifySum" + (name) + (count) + "()"
