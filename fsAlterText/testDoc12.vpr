@@ -1,0 +1,18 @@
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+    var c: Int
+
+    assume 0 < i < N;
+    // assert 2+2==3
+    assert for n=i to 21 sum (2*n^3) > 0
+    assert for n=i to 21 sum (2*n^a*3) > 0
+    assert for n=i to 21 sum (n^3) > 0
+    assert for n=i to 21 setsum (n^3) > 0
+    assert for n=i to 21 sum (n*n) > 0
+
+
+}

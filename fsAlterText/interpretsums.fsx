@@ -58,6 +58,20 @@ axiom leftRecursion  {
         0 <= i < N ==> simplesum(i,N) == i + simplesum(i+1,N)
 }
 
+axiom closedForm  {
+    forall  N: Int :: 
+        simplesum(1,N) == (N*(N+1))/2
+}
+
+axiom positiveTerms  {
+    forall  i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) >= i
+}
+
+axiom largerIndex  {
+    forall  i:Int, N: Int, N2: Int :: 
+        0 <= i < N < N2 ==> simplesum(i,N) <= simplesum(i,N2)
+}
 
 }
 
@@ -106,6 +120,39 @@ axiom leftRecursionPowerSum" + powerString + " {
     forall i:Int, N: Int :: 
         0 <= i < N ==> powerSum" + (powerString) + "(i,N) == " + (powerFold power "i") + " + powerSum" + (powerString) + "(i+1,N)
 }
+}
+
+
+
+")
+
+
+
+let geometricSum (filepath) (power: int)  =
+    // Add simplesum domain to the summationDomain.vpr file
+    use writer: StreamWriter = File.AppendText(filepath)
+    let powerString = string power
+    if not (domainExists ("domain geometricSumDomain" + powerString) (filepath)) then
+        writer.WriteLine("
+domain geometricSumDomain" + (powerString) + " {
+// uninterpreted function
+function geometricSum" + (powerString) + "(i: Int, N: Int): Int
+
+axiom iGreaterThanNgeometricSum" + powerString + " {
+    forall i:Int, N:Int::
+        i > N ==> geometricSum" + (powerString) + "(i,N) == 0
+}
+
+axiom emptygeometricSum" + powerString + "{
+    forall i:Int, N:Int::
+    i > 0 && N > i==> geometricSum" + (powerString) + "(i,N) == 0
+}
+
+axiom nonEmptygeometricSum" + powerString + "{
+    forall i:Int, N:Int::
+    i < 0 < N ==> geometricSum" + (powerString) + "(i,N) == 1
+}
+
 }
 
 
@@ -314,6 +361,14 @@ let (|IndexVarPowerMatch|_|) (indexVariable:string) (str: string) =
         | _ -> None
 
 
+let (|IndexVarGeometricMatch|_|) (indexVariable:string) (str: string) =
+    let mutable powermut = 0
+    let parts = str.Split('^', 2)
+    match parts with
+        | [| power; indexVar |] when indexVar=indexVariable -> Some(power)
+        | _ -> None
+
+
 let (|AnyVarPowerMatch|_|) (indexVariable:string) (str: string) =
     let mutable powermut = 0
     let parts = str.Split('^', 2)
@@ -328,10 +383,11 @@ let (|CoefficientMatch|_|) (indexVariable:string) (lowerBound) (upperBound) (str
     let parts = str.Split('*',2)
     match parts with
         | [| coefficient; innerFunction |] when System.Int32.TryParse(coefficient, &coefficientmut) -> Some(coefficient,innerFunction)
+        | [| innerFunction; coefficient  |] when System.Int32.TryParse(coefficient, &coefficientmut) -> Some(coefficient,innerFunction)
         | _ -> None
 
 
-let (|CoefficientMatchAny|_|) (indexVariable:string) (lowerBound) (upperBound) (str: string) =
+let (|CollectPowers|_|) (indexVariable:string) (lowerBound) (upperBound) (str: string) =
     let parts = str.Split('*',2)
     match parts with
         | [| multiplicand; rest |] -> Some(multiplicand,rest)
@@ -348,12 +404,7 @@ let (|CoefficientMatchAny|_|) (indexVariable:string) (lowerBound) (upperBound) (
 let rec (|AdditionMatch|_|) (str: string) =
     let parts = str.Split('+', 2) // Split only at the first occurrence of '+'
     match parts with
-    | [| firstTerm; rest |] ->
-        match rest with
-        | AdditionMatch(innerFirst, innerRest) ->
-            Some(firstTerm, innerFirst + "+" + innerRest)
-        | _ ->
-            Some(firstTerm, rest)
+    | [| firstTerm; rest |] -> Some(firstTerm, rest)
     | _ -> None
 
 
@@ -362,12 +413,7 @@ let rec (|AdditionMatch|_|) (str: string) =
 let rec (|SubtractionMatch|_|) (str: string) =
     let parts = str.Split('-', 2) // Split only at the first occurrence of '-'
     match parts with
-    | [| firstTerm; rest |] ->
-        match rest with
-        | SubtractionMatch(innerFirst, innerRest) ->
-            Some(firstTerm, innerFirst + "-" + innerRest)
-        | _ ->
-            Some(firstTerm, rest)
+    | [| firstTerm; rest |] -> Some(firstTerm, rest)
     | _ -> None
 
 
@@ -385,6 +431,24 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
     let mutable charHolder = 'a'
     let rec interpretTerm (term:string) =
         match term.Trim() with
+        | (IndexIntPowerMatch indexVariable powerString) when (not (strContainsVariable powerString)) -> // where n is the indexvariable n^expression, where expression does not contain a ascii character
+            let power = int powerString
+            powerSum outputpath power |> ignore
+            if isSet then 
+                let count = GlobalCounterModule.getCounter()
+                GlobalCounterModule.incrementCounter() 
+                setifySum(outputpath,indexVariable,(powerFold (int power) indexVariable),"power" + (powerString.Trim()) + "Sum" + (string count),lowerBound,upperBound)
+            else 
+                sprintf "powerSum%s(%s,%s)"  (powerString.Trim()) lowerBound upperBound
+        | (CoefficientMatch indexVariable lowerBound upperBound interpretedSum) -> 
+            let (coefficient,innerFunction) = interpretedSum
+            sprintf "%s * %s"  coefficient (interpretTerm innerFunction)
+        | (AdditionMatch interpretedSum) -> 
+            let (firstTerm: string,rest) = interpretedSum
+            sprintf "%s + %s"  (interpretTerm firstTerm) (interpretTerm rest)
+        | (SubtractionMatch interpretedSum) -> 
+            let (firstTerm: string,rest) = interpretedSum
+            sprintf "%s - %s"  (interpretTerm firstTerm) (interpretTerm rest)
         | (c: string) when c=indexVariable  -> // SimpleSum
             simpleSumDomain (outputpath) |> ignore
             if isSet then 
@@ -400,35 +464,15 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
                 setifySum(outputpath,indexVariable,term.Trim(),"constantSum" + (string count),lowerBound,upperBound)
             else
                 sprintf "(%d*(%s-%s+1))" intHolder upperBound lowerBound
-        | (IndexIntPowerMatch indexVariable powerString) when (not (strContainsVariable powerString)) -> // where n is the indexvariable n^expression, where expression does not contain a ascii character
+        | (IndexVarGeometricMatch indexVariable powerString) when (not (strContainsVariable powerString)) -> // where n is the indexvariable n^expression, where expression does not contain a ascii character
             let power = int powerString
-            powerSum outputpath power |> ignore
+            geometricSum outputpath power |> ignore
             if isSet then 
                 let count = GlobalCounterModule.getCounter()
                 GlobalCounterModule.incrementCounter() 
-                setifySum(outputpath,indexVariable,(powerFold (int power) indexVariable),"power" + (powerString.Trim()) + "Sum" + (string count),lowerBound,upperBound)
+                setifySum(outputpath,indexVariable,(powerFold (int power) indexVariable),"geometric" + (powerString.Trim()) + "Sum" + (string count),lowerBound,upperBound)
             else 
-                sprintf "powerSum%s(%s,%s)"  (powerString.Trim()) lowerBound upperBound
-        | (AnyIntPowerMatch indexVariable powerString) -> // where n is the indexvariable n^expression where expression can contain an ascii character
-            let (power,powerVar) = powerString
-            if isSet then 
-                let count = GlobalCounterModule.getCounter()
-                GlobalCounterModule.incrementCounter() 
-                setifySum(outputpath,indexVariable,(powerFold (int power) powerVar),"power" + (power) + "SumAny" + (string count),lowerBound,upperBound) 
-            else 
-                sprintf "%s*(%s-%s)"  (powerFold (int power) powerVar) upperBound lowerBound
-        | (CoefficientMatch indexVariable lowerBound upperBound interpretedSum) -> 
-            let (coefficient,innerFunction) = interpretedSum
-            sprintf "%s * %s"  coefficient (interpretTerm innerFunction)
-        | (CoefficientMatchAny indexVariable lowerBound upperBound interpretedSum) -> 
-            let (multiplicand,rest) = interpretedSum
-            sprintf "%s * %s"  (interpretTerm multiplicand) (interpretTerm rest)
-        | (AdditionMatch interpretedSum) -> 
-            let (firstTerm: string,rest) = interpretedSum
-            sprintf "%s + %s"  (interpretTerm firstTerm) (interpretTerm rest)
-        | (SubtractionMatch interpretedSum) -> 
-            let (firstTerm: string,rest) = interpretedSum
-            sprintf "%s - %s"  (interpretTerm firstTerm) (interpretTerm rest)
+                sprintf "geometricSum%s(%s,%s)"  (powerString.Trim()) lowerBound upperBound
         | (c: string) when Char.TryParse(c,&charHolder)  -> 
             sprintf "(%c*(%s-%s+1))" (charHolder) lowerBound upperBound
         | _ -> 
@@ -445,6 +489,18 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
 
 
 
+    // | (AnyIntPowerMatch indexVariable powerString) -> // where n is not the indexvariable n^expression where expression can contain an ascii character
+    //     let (power,powerVar) = powerString
+    //     printf "here:%s" powerVar
+    //     if isSet then 
+    //         let count = GlobalCounterModule.getCounter()
+    //         GlobalCounterModule.incrementCounter() 
+    //         setifySum(outputpath,indexVariable,(powerFold (int power) powerVar),"power" + (power) + "SumAny" + (string count),lowerBound,upperBound) 
+    //     else 
+    //         sprintf "%s*(%s-%s)"  (powerFold (int power) powerVar) upperBound lowerBound
+    // | (CoefficientMatchAny indexVariable lowerBound upperBound interpretedSum) -> 
+    //     let (multiplicand,rest) = interpretedSum
+    //     sprintf "%s * %s"  (interpretTerm multiplicand) (interpretTerm rest)
 
     // match innerFunc.Split('+') with
     // | terms ->
