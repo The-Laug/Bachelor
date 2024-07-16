@@ -1,0 +1,107 @@
+
+domain powerSumDomain2 {
+// uninterpreted function
+function powerSum2(i: Int, N: Int): Int
+
+axiom emptyPowerSum2{
+    powerSum2(0,0) == 0
+}
+
+axiom iGreaterThanNPowerSum2 {
+    forall i:Int, N:Int::
+        i > N ==> powerSum2(i,N) == 0
+}
+
+axiom rightRecursionPowerSum2 {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> powerSum2(i,N) == powerSum2(i,N-1) + N*N
+}
+
+axiom leftRecursionPowerSum2 {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> powerSum2(i,N) == i*i + powerSum2(i+1,N)
+}
+}
+
+
+
+
+
+domain simpleSums {
+// uninterpreted function
+function simplesum(i: Int, N: Int): Int
+
+axiom emptySum {
+    simplesum(0,0) == 0
+}
+
+axiom iGreaterThanN  {
+    forall i:Int, N:Int::
+        i > N ==> simplesum(i,N) == 0
+}
+
+axiom rightRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) == simplesum(i,N-1) + N
+}
+
+axiom leftRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) == i + simplesum(i+1,N)
+}
+
+
+}
+
+
+
+
+
+domain setifysimpleSum {
+    // uninterpreted function
+    function setifySumsimpleSum( lowerBound:Int, upperBound:Int) : Set[Int]
+
+    axiom setifyInSetsimpleSum {
+        forall lowerBound:Int,upperBound: Int, j: Int ::
+            lowerBound<= j <=upperBound ==> j in setifySumsimpleSum(lowerBound,upperBound)
+    }
+    
+    axiom setifyNotInSetsimpleSum {
+        forall lowerBound:Int,upperBound: Int, j : Int ::
+            j < lowerBound || j > upperBound ==> !( j in setifySumsimpleSum(lowerBound,upperBound))
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain powerSumDomain3 {
+// uninterpreted function
+function powerSum3(i: Int, N: Int): Int
+
+axiom emptyPowerSum3{
+    powerSum3(0,0) == 0
+}
+
+axiom iGreaterThanNPowerSum3 {
+    forall i:Int, N:Int::
+        i > N ==> powerSum3(i,N) == 0
+}
+
+axiom rightRecursionPowerSum3 {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> powerSum3(i,N) == powerSum3(i,N-1) + N*N*N
+}
+
+axiom leftRecursionPowerSum3 {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> powerSum3(i,N) == i*i*i + powerSum3(i+1,N)
+}
+}
+
+
+
+

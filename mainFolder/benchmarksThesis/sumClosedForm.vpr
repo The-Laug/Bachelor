@@ -1,0 +1,20 @@
+
+
+
+method sumClosedForm(n: Int) returns (res: Int)
+  requires 0 <= n
+  ensures res == for j=0 to n sum (j)
+{
+  res := 0
+  var i: Int := 0;
+
+  while (i <= n)
+    invariant i <= (n + 1)
+    invariant res == (i - 1) * i / 2 
+  {
+    res := res + i
+    i := i + 1
+  }
+}
+
+

@@ -1,0 +1,1 @@
+247 failure sumIndexShift_output

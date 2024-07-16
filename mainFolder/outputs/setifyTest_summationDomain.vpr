@@ -1,0 +1,114 @@
+
+domain simpleSums {
+// uninterpreted function
+function simplesum(i: Int, N: Int): Int
+
+axiom emptySum {
+    simplesum(0,0) == 0
+}
+
+axiom iGreaterThanN  {
+    forall i:Int, N:Int::
+        i > N ==> simplesum(i,N) == 0
+}
+
+axiom rightRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) == simplesum(i,N-1) + N
+}
+
+axiom leftRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) == i + simplesum(i+1,N)
+}
+
+
+}
+
+
+
+
+
+domain setifysimpleSum {
+    // uninterpreted function
+    function setifySumsimpleSum(lowerBound:Int, upperBound:Int) : Multiset[Int]
+
+    axiom setifyInSetsimpleSum {
+        forall lowerBound:Int,upperBound: Int, j: Int ::
+            lowerBound<= j <=upperBound ==> (j in setifySumsimpleSum(lowerBound,upperBound))>=1
+    }
+    
+    axiom setifyNotInSetsimpleSum {
+        forall lowerBound:Int,upperBound: Int, j : Int ::
+            j < lowerBound || j > upperBound ==> !( (j in setifySumsimpleSum(lowerBound,upperBound))>=1 )
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain setifysimpleSum0 {
+    // uninterpreted function
+    function setifySumsimpleSum0(lowerBound:Int, upperBound:Int) : Multiset[Int]
+
+    axiom setifyInSetsimpleSum0 {
+        forall lowerBound:Int,upperBound: Int, j: Int ::
+            lowerBound<= j <=upperBound ==> (j in setifySumsimpleSum0(lowerBound,upperBound))>=1
+    }
+    
+    axiom setifyNotInSetsimpleSum0 {
+        forall lowerBound:Int,upperBound: Int, j : Int ::
+            j < lowerBound || j > upperBound ==> !( (j in setifySumsimpleSum0(lowerBound,upperBound))>=1 )
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain setifyconstantSum1 {
+    // uninterpreted function
+    function setifySumconstantSum1(lowerBound:Int, upperBound:Int) : Multiset[Int]
+
+    axiom setifyInSetconstantSum1 {
+        forall lowerBound:Int,upperBound: Int, j: Int ::
+            lowerBound<= j <=upperBound ==> (25 in setifySumconstantSum1(lowerBound,upperBound))>=1
+    }
+    
+    axiom setifyNotInSetconstantSum1 {
+        forall lowerBound:Int,upperBound: Int, j : Int ::
+            j < lowerBound || j > upperBound ==> !( (25 in setifySumconstantSum1(lowerBound,upperBound))>=1 )
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain setifysimpleSum2 {
+    // uninterpreted function
+    function setifySumsimpleSum2(lowerBound:Int, upperBound:Int) : Multiset[Int]
+
+    axiom setifyInSetsimpleSum2 {
+        forall lowerBound:Int,upperBound: Int, j: Int ::
+            lowerBound<= j <=upperBound ==> (j in setifySumsimpleSum2(lowerBound,upperBound))>=1
+    }
+    
+    axiom setifyNotInSetsimpleSum2 {
+        forall lowerBound:Int,upperBound: Int, j : Int ::
+            j < lowerBound || j > upperBound ==> !( (j in setifySumsimpleSum2(lowerBound,upperBound))>=1 )
+    }
+
+    }
+    
+    
+    
+    
+    

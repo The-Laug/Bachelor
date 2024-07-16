@@ -1,0 +1,9 @@
+method try() 
+{
+    var s1: Multiset[Int]
+    var s3: Multiset[Int]
+    var j:Int
+    assert for i=0 to j setsum (i) == for i=0 to j+2 setsum (i)
+    // assume 0<i<N
+    // assert for j=2 to 22 setsum (j) subset ( for j=0 to 19 setsum (j) union for j=20 to 25 setsum (j) )
+    }

@@ -1,0 +1,112 @@
+
+domain squareSums0 {
+// uninterpreted function
+function squaresum(i: Int, N: Int): Int
+
+axiom emptySquareSum{
+    squaresum(0,0) == 0
+}
+
+axiom iGreaterThanNSquareSum {
+    forall i:Int, N:Int::
+        i > N ==> squaresum(i,N) == 0
+}
+
+axiom rightRecursionSquareSum {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> squaresum(i,N) == squaresum(i,N-1) + N*N
+}
+
+axiom leftRecursionSquareSum {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> squaresum(i,N) == i*i + squaresum(i+1,N)
+}
+}
+
+
+
+
+
+domain setifysquareSum0 {
+    // uninterpreted function
+    function setifySumsquareSum0( lowerBound:Int, upperBound:Int) : Set[Int]
+
+    axiom setifyInSetsquareSum0 {
+        forall lowerBound:Int,upperBound: Int, p: Int ::
+            lowerBound<= p <=upperBound ==> p^2 in setifySumsquareSum0(lowerBound,upperBound)
+    }
+    
+    axiom setifyNotInSetsquareSum0 {
+        forall lowerBound:Int,upperBound: Int, p : Int ::
+            p < lowerBound || p > upperBound ==> !( p^2 in setifySumsquareSum0(lowerBound,upperBound))
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain setifysquareSum1 {
+    // uninterpreted function
+    function setifySumsquareSum1( lowerBound:Int, upperBound:Int) : Set[Int]
+
+    axiom setifyInSetsquareSum1 {
+        forall lowerBound:Int,upperBound: Int, p: Int ::
+            lowerBound<= p <=upperBound ==> p^2 in setifySumsquareSum1(lowerBound,upperBound)
+    }
+    
+    axiom setifyNotInSetsquareSum1 {
+        forall lowerBound:Int,upperBound: Int, p : Int ::
+            p < lowerBound || p > upperBound ==> !( p^2 in setifySumsquareSum1(lowerBound,upperBound))
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain setifysquareSum0 {
+    // uninterpreted function
+    function setifySumsquareSum0( lowerBound:Int, upperBound:Int) : Set[Int]
+
+    axiom setifyInSetsquareSum0 {
+        forall lowerBound:Int,upperBound: Int, p: Int ::
+            lowerBound<= p <=upperBound ==> p^2 in setifySumsquareSum0(lowerBound,upperBound)
+    }
+    
+    axiom setifyNotInSetsquareSum0 {
+        forall lowerBound:Int,upperBound: Int, p : Int ::
+            p < lowerBound || p > upperBound ==> !( p^2 in setifySumsquareSum0(lowerBound,upperBound))
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain setifysquareSum1 {
+    // uninterpreted function
+    function setifySumsquareSum1( lowerBound:Int, upperBound:Int) : Set[Int]
+
+    axiom setifyInSetsquareSum1 {
+        forall lowerBound:Int,upperBound: Int, p: Int ::
+            lowerBound<= p <=upperBound ==> p^2 in setifySumsquareSum1(lowerBound,upperBound)
+    }
+    
+    axiom setifyNotInSetsquareSum1 {
+        forall lowerBound:Int,upperBound: Int, p : Int ::
+            p < lowerBound || p > upperBound ==> !( p^2 in setifySumsquareSum1(lowerBound,upperBound))
+    }
+
+    }
+    
+    
+    
+    
+    

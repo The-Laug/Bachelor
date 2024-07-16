@@ -1,0 +1,26 @@
+
+method try() 
+{
+    var i: Int
+    var N: Int
+    var z: Int
+    var x: Int
+    var y: Int
+
+
+    assume 0 < i < N;
+
+    // Summation with constants
+    assert for j=0 to 4 sum (2*j) == for j=0 to 4 sum (j) * 2
+    assert for j=0 to 4 sum (2*j) < for j=0 to 5 sum (j) * 2
+    assert for j=0 to i sum (j) < for j=0 to i+2 sum (j)
+    assert for j=0 to i sum (j^2) < for j=0 to i+2 sum (j^2)
+    assert for j=i+2 to N sum (j^2) < for j=i to N sum (j^2)
+    assert for j=0 to i+2 sum (j^2) < for j=0 to i sum (j^2) + (i+2)*(i+2) + (i+1)*(i+1)
+    assert for j=0 to 5 sum (j) == for j=0 to 5 sum (5-j)
+    assert for j=0 to i sum (j) == for j=0 to i sum (i-j)
+
+
+    // assert false
+
+}

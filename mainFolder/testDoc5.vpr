@@ -1,0 +1,24 @@
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+
+    // Summation with constants
+    assert for j=0 to 4 sum (2) == 10
+    assert for j=1 to 3 sum (5) == 15
+
+    // Mixed terms
+    assert for j=0 to 3 sum (j^2 + 3*j + 1) == 25
+    assert for j=1 to 4 sum (4*j^2 - j + 2) == 82
+
+    // Large bounds
+    assert for j=0 to 100 sum (j) == 5050
+    assert for j=0 to 50 sum (j^2) == 42925
+    assert for j=0 to 8 sum (j^3) == 1296
+
+
+    // Invalid assertion (for error handling)
+    assert for j=0 to 5 sum (j) == 100  // Incorrect sum
+}

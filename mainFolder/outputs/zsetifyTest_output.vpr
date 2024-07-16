@@ -1,0 +1,11 @@
+import "zsetifyTest_summationDomain.vpr"
+method try() 
+{
+    var s1: Multiset[Int]
+    var s3: Multiset[Int]
+    var j:Int
+    var jp: Int
+    assert setifySumsimpleSum01() == setifySumsimpleSum12()
+    // assume 0<i<N
+    // assert setifySumsimpleSum23() subset ( setifySumsimpleSum34() union setifySumsimpleSum45() )
+    }

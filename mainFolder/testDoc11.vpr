@@ -1,0 +1,16 @@
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+    var a: Int
+    assume a== 1/2
+    assume 0 < i < N;
+    // assert 2+2==3
+
+    assert for n=i to 21 sum (n^2+n) > 2 
+    assert for n=i to 21 sum (0^n) > 2 
+    assert for n=i to 21 sum (a^n) > 2 
+
+}
