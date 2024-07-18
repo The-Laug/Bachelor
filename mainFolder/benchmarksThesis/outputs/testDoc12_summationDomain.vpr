@@ -24,7 +24,7 @@ axiom leftRecursionPowerSum3 {
 
 axiom positiveTermsPowerSum3  {
     forall  i:Int, N: Int :: 
-        0 <= i < N ==> powerSum3(i,N) >= i
+        0 <= i < N ==> powerSum3(i,N) >= i*i*i
 }
 
 axiom largerIndexPowerSum3  {
@@ -151,7 +151,7 @@ axiom leftRecursionPowerSum12 {
 
 axiom positiveTermsPowerSum12  {
     forall  i:Int, N: Int :: 
-        0 <= i < N ==> powerSum12(i,N) >= i
+        0 <= i < N ==> powerSum12(i,N) >= i*i*i*i*i*i*i*i*i*i*i*i
 }
 
 axiom largerIndexPowerSum12  {

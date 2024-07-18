@@ -1,4 +1,4 @@
-verification id: 171
+verification id: 219
 [VER] Requesting to stream verification results:
 {"msg_body":{"text":"Viper AST Constructor"},"msg_type":"copyright_report"}
 {"msg_body":[],"msg_type":"warnings_during_parsing"}
@@ -37,5 +37,5 @@ verification id: 171
 {"msg_body":{"quantifier":"(forall i: Int, N: Int, j: Int :: { simplesum(i, N), simplesum(i, j) } { simplesum(i, N), simplesum(j, N) } { simplesum(i, j), simplesum(j, N) } i < j && j < N ==> simplesum(i, N) == simplesum(i, j) + simplesum(j, N))","quantifier_type":"Forall","triggers":[["simplesum(i, N)","simplesum(i, j)"],["simplesum(i, N)","simplesum(j, N)"],["simplesum(i, j)","simplesum(j, N)"]]},"msg_type":"quantifier_chosen_triggers_message"}
 {"msg_body":{"details":{"cached":false,"entity":{"name":"sumClosedForm","position":{"end":"19:2","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/sumClosedForm_output.vpr","start":"5:1"},"type":"method"},"time":13},"kind":"for_entity","status":"success","verifier":"silicon"},"msg_type":"verification_result"}
 {"msg_body":{"msg":"verification_termination_message"},"msg_type":"verification_termination_message"}
-{"msg_body":{"details":{"time":231},"kind":"overall","status":"success","verifier":"silicon"},"msg_type":"verification_result"}
+{"msg_body":{"details":{"time":257},"kind":"overall","status":"success","verifier":"silicon"},"msg_type":"verification_result"}
 

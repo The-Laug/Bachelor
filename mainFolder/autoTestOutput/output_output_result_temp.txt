@@ -1,6 +1,6 @@
-verification id: 166
+verification id: 213
 [VER] Requesting to stream verification results:
 {"msg_body":{"text":"Viper AST Constructor"},"msg_type":"copyright_report"}
 {"msg_body":[],"msg_type":"warnings_during_parsing"}
-{"msg_body":{"details":{"result":{"errors":[{"cached":false,"position":{"end":"5:29","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/output_output.vpr","start":"5:20"},"tag":"typechecker.error","text":"undeclared call `squaresum`, expected function or predicate (output_output.vpr@5.20--5.29)"},{"cached":false,"position":{"end":"12:35","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/output_output.vpr","start":"12:26"},"tag":"typechecker.error","text":"undeclared call `squaresum`, expected function or predicate (output_output.vpr@12.26--12.35)"}],"type":"error"},"time":7},"status":"failure"},"msg_type":"ast_construction_result"}
+{"msg_body":{"details":{"result":{"errors":[{"cached":false,"position":{"end":"5:29","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/output_output.vpr","start":"5:20"},"tag":"typechecker.error","text":"undeclared call `squaresum`, expected function or predicate (output_output.vpr@5.20--5.29)"},{"cached":false,"position":{"end":"12:35","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/output_output.vpr","start":"12:26"},"tag":"typechecker.error","text":"undeclared call `squaresum`, expected function or predicate (output_output.vpr@12.26--12.35)"}],"type":"error"},"time":10},"status":"failure"},"msg_type":"ast_construction_result"}
 

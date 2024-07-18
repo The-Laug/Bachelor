@@ -1,4 +1,55 @@
-import "multisetTest_summationDomain.vpr"
+domain setifygenericSum6 {
+    // uninterpreted function
+    function setifySumgenericSum67(N:Int) : Multiset[Int]
+
+    function contained(X: Multiset[Int], j: Int, M: Int): Bool
+
+    axiom test {
+        forall  X:Multiset[Int],j:Int, M: Int :: {contained(X,j,M)}
+            contained(X,j,M) <==> (M-j in X)==1
+    }
+
+    axiom setifyInSetgenericSum6 {
+        forall  M:Int,j: Int :: {contained(setifySumgenericSum67(M), j, M)}
+            0<= j <=M ==> contained(setifySumgenericSum67(M), j, M)
+    }
+    
+    axiom setifyNotInSetgenericSum6 {
+        forall j : Int, M:Int ::
+            j < 0 ==> ( (M-j in setifySumgenericSum67(M))==0 )
+    }
+
+    axiom setifyAlsoNotInSetgenericSum6 {
+        forall j : Int, M:Int ::
+            j > M ==> ( (M-j in setifySumgenericSum67(M))==0 )
+    }
+
+    }
+        
+    
+
+    domain setifysimpleSum7 {
+    // uninterpreted function
+    function setifySumsimpleSum78(N: Int) : Multiset[Int]
+
+    axiom setifyInSetsimpleSum7 {
+        forall j: Int, M: Int ::
+            0<= j <=M ==> (j in setifySumsimpleSum78(M))==1
+    }
+    
+    axiom setifyNotInSetsimpleSum7 {
+        forall j : Int, M: Int ::
+            j < 0 ==> ( (j in setifySumsimpleSum78(M))==0 )
+    }
+
+    axiom setifyAlsoNotInSetsimpleSum7 {
+        forall j : Int, N:Int ::
+            j > N ==> ( (j in setifySumsimpleSum78(N))==0 )
+    }
+
+    }
+        
+    
 
 
 method try(x:Int, y: Int) 
@@ -8,11 +59,9 @@ method try(x:Int, y: Int)
 
     assume 0 < i < N
 
-    assert (2 in setifySumconstantSum01())>0
-    assert (2 in setifySumvariableSum12())>0
-    assert (2 in setifySumsimpleSum23())>0
-    assert setifySumsimpleSum34() == setifySumsimpleSum34()
-    assert setifySumgenericSum45() == setifySumsimpleSum56()
-    assert setifySumgenericSum67() == setifySumsimpleSum78()
+    assert contained(setifySumgenericSum67(N), 0, N)
+    assert (N in setifySumgenericSum67(N))==1
+    assert (0 in setifySumsimpleSum78(0))==1
+    assert setifySumgenericSum67(0) == setifySumsimpleSum78(0)
 
 }

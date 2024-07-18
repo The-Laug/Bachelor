@@ -84,7 +84,7 @@ axiom leftRecursionPowerSum2 {
 
 axiom positiveTermsPowerSum2  {
     forall  i:Int, N: Int :: 
-        0 <= i < N ==> powerSum2(i,N) >= i
+        0 <= i < N ==> powerSum2(i,N) >= i*i
 }
 
 axiom largerIndexPowerSum2  {

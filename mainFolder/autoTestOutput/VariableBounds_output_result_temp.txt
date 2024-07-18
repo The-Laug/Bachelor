@@ -1,4 +1,4 @@
-verification id: 149
+verification id: 196
 [VER] Requesting to stream verification results:
 {"msg_body":{"text":"Viper AST Constructor"},"msg_type":"copyright_report"}
 {"msg_body":[],"msg_type":"warnings_during_parsing"}
@@ -35,7 +35,7 @@ verification id: 149
 {"msg_body":{"quantifier":"(forall i: Int, N: Int :: { simplesum(i, N) } 0 <= i && i < N ==> simplesum(i, N) >= i)","quantifier_type":"Forall","triggers":[["simplesum(i, N)"]]},"msg_type":"quantifier_chosen_triggers_message"}
 {"msg_body":{"quantifier":"(forall i: Int, N: Int, N2: Int :: { simplesum(i, N), simplesum(i, N2) } 0 <= i && i < N && N < N2 ==> simplesum(i, N) <= simplesum(i, N2))","quantifier_type":"Forall","triggers":[["simplesum(i, N)","simplesum(i, N2)"]]},"msg_type":"quantifier_chosen_triggers_message"}
 {"msg_body":{"quantifier":"(forall i: Int, N: Int :: { simplesum(i, N) } { simplesum(i, 0), simplesum(0, N) } i < 0 && 0 < N ==> simplesum(i, N) == simplesum(i, 0) + simplesum(0, N))","quantifier_type":"Forall","triggers":[["simplesum(i, N)"],["simplesum(i, 0)","simplesum(0, N)"]]},"msg_type":"quantifier_chosen_triggers_message"}
-{"msg_body":{"details":{"cached":false,"entity":{"name":"try","position":{"end":"13:2","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/VariableBounds_output.vpr","start":"3:1"},"type":"method"},"time":4},"kind":"for_entity","status":"success","verifier":"silicon"},"msg_type":"verification_result"}
+{"msg_body":{"details":{"cached":false,"entity":{"name":"try","position":{"end":"13:2","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/VariableBounds_output.vpr","start":"3:1"},"type":"method"},"time":5},"kind":"for_entity","status":"success","verifier":"silicon"},"msg_type":"verification_result"}
 {"msg_body":{"msg":"verification_termination_message"},"msg_type":"verification_termination_message"}
-{"msg_body":{"details":{"time":237},"kind":"overall","status":"success","verifier":"silicon"},"msg_type":"verification_result"}
+{"msg_body":{"details":{"time":243},"kind":"overall","status":"success","verifier":"silicon"},"msg_type":"verification_result"}
 

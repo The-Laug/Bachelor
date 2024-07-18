@@ -230,7 +230,7 @@ axiom indexShiftOnZero  {
     
     axiom setifyNotInSetconstantSum7 {
         forall n : Int ::
-            n != n ==> ( (n in setifySumconstantSum78())==0 )
+            n != 2 ==> ( (n in setifySumconstantSum78())==0 )
     }
 
     }

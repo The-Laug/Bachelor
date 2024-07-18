@@ -161,7 +161,7 @@ axiom indexShiftOnZero  {
     
     axiom setifyNotInSetconstantSum4 {
         forall n : Int ::
-            n != i ==> ( (i in setifySumconstantSum45())==0 )
+            n != 2 ==> ( (n in setifySumconstantSum45())==0 )
     }
 
     }
@@ -179,7 +179,7 @@ axiom indexShiftOnZero  {
     
     axiom setifyNotInSetconstantSum5 {
         forall n : Int ::
-            n != i ==> ( (i in setifySumconstantSum56())==0 )
+            n != 2 ==> ( (n in setifySumconstantSum56())==0 )
     }
 
     }
@@ -197,7 +197,7 @@ axiom indexShiftOnZero  {
     
     axiom setifyNotInSetconstantSum6 {
         forall n : Int ::
-            n != i ==> ( (i in setifySumconstantSum67())==0 )
+            n != 2 ==> ( (n in setifySumconstantSum67())==0 )
     }
 
     }

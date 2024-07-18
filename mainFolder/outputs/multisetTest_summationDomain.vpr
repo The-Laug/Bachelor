@@ -130,21 +130,21 @@
 
     domain setifygenericSum6 {
     // uninterpreted function
-    function setifySumgenericSum67() : Multiset[Int]
+    function setifySumgenericSum67(N:Int) : Multiset[Int]
 
     axiom setifyInSetgenericSum6 {
-        forall j: Int, N:Int ::
-            0<= j <=N ==> (N-j in setifySumgenericSum67())==1
+        forall j: Int, M:Int ::
+            0<= j <=M ==> (M-j in setifySumgenericSum67(M))==1
     }
     
     axiom setifyNotInSetgenericSum6 {
-        forall j : Int, N:Int ::
-            j < 0 ==> ( (N-j in setifySumgenericSum67())==0 )
+        forall j : Int, M:Int ::
+            j < 0 ==> ( (M-j in setifySumgenericSum67(M))==0 )
     }
 
     axiom setifyAlsoNotInSetgenericSum6 {
-        forall j : Int, N:Int ::
-            j > N ==> ( (N-j in setifySumgenericSum67())==0 )
+        forall j : Int, M:Int ::
+            j > M ==> ( (M-j in setifySumgenericSum67(M))==0 )
     }
 
     }
@@ -153,21 +153,21 @@
 
     domain setifysimpleSum7 {
     // uninterpreted function
-    function setifySumsimpleSum78() : Multiset[Int]
+    function setifySumsimpleSum78(N: Int) : Multiset[Int]
 
     axiom setifyInSetsimpleSum7 {
-        forall j: Int, N:Int ::
-            0<= j <=N ==> (j in setifySumsimpleSum78())==1
+        forall j: Int, M: Int ::
+            0<= j <=M ==> (j in setifySumsimpleSum78(M))==1
     }
     
     axiom setifyNotInSetsimpleSum7 {
-        forall j : Int ::
-            j < 0 ==> ( (j in setifySumsimpleSum78())==0 )
+        forall j : Int, M: Int ::
+            j < 0 ==> ( (j in setifySumsimpleSum78(M))==0 )
     }
 
     axiom setifyAlsoNotInSetsimpleSum7 {
         forall j : Int, N:Int ::
-            j > N ==> ( (j in setifySumsimpleSum78())==0 )
+            j > N ==> ( (j in setifySumsimpleSum78(N))==0 )
     }
 
     }

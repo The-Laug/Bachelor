@@ -135,7 +135,7 @@ axiom leftRecursionPowerSum" + powerString + " {
 
 axiom positiveTermsPowerSum" + powerString + "  {
     forall  i:Int, N: Int :: 
-        0 <= i < N ==> powerSum" + (powerString) + "(i,N) >= i
+        0 <= i < N ==> powerSum" + (powerString) + "(i,N) >= " + (powerFold power "i") + "
 }
 
 axiom largerIndexPowerSum" + powerString + "  {

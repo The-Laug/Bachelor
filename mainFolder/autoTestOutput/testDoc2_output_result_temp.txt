@@ -1,4 +1,4 @@
-verification id: 181
+verification id: 229
 [VER] Requesting to stream verification results:
 {"msg_body":{"text":"Viper AST Constructor"},"msg_type":"copyright_report"}
 {"msg_body":{"details":{"result":{"errors":[{"cached":false,"position":{"end":"12:17","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/testDoc2_output.vpr","start":"12:17"},"tag":"parser.error","text":"Parse error: Expected (stmt | \"}\"):12:17, found \"^2 * simpl\". Occurred while parsing: annotated:4:1 / methodDecl:4:8 / stmtBlock:5:1 / braces:5:1 / reservedSym:12:17 (testDoc2_output.vpr@12.17--12.17)"}],"type":"error"},"time":3},"status":"failure"},"msg_type":"ast_construction_result"}
