@@ -1,0 +1,13 @@
+import "VariableBounds_summationDomain.vpr"
+
+method try() 
+{
+    var i: Int
+    var N: Int
+
+
+    assume 0 < i < N;
+
+    // Variable 
+    assert simplesum(i, N) > simplesum(i, N-2)
+}

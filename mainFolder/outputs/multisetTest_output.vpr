@@ -1,0 +1,18 @@
+import "multisetTest_summationDomain.vpr"
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N
+
+    assert (2 in setifySumconstantSum01())>0
+    assert (2 in setifySumvariableSum12())>0
+    assert (2 in setifySumsimpleSum23())>0
+    assert setifySumsimpleSum34() == setifySumsimpleSum34()
+    assert setifySumgenericSum45() == setifySumsimpleSum56()
+    assert setifySumgenericSum67() == setifySumsimpleSum78()
+
+}

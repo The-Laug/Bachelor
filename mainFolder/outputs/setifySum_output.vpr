@@ -1,21 +1,17 @@
 import "setifySum_summationDomain.vpr"
 
-
-
-method sumClosedForm(n: Int) returns (res: Int)
-  requires 0 <= n
-  ensures res == simplesum(0, n)
+method try() 
 {
-  res := 0
-  var i: Int := 0;
+    var i: Int
+    var N: Int
+    var z: Int
+    var x: Int
+    var y: Int
 
-  while (i <= n)
-    invariant i <= (n + 1)
-    invariant res == (i - 1) * i / 2 
-  {
-    res := res + i
-    i := i + 1
-  }
+
+    assume 0 < i < N;
+
+    assert setifySumsimpleSum01() > 0
+
+
 }
-
-

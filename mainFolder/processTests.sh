@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TEMPDIR="./autoTestOutput"
-
+rm "$TEMPDIR/collected_result.txt"
 # Iterate over each temporary result file in the directory
 for TEMPFILE in "$TEMPDIR"/*_result_temp.txt
 do
@@ -31,9 +31,14 @@ do
 
         # Write the extracted time and status to the final result file
         if [ -n "$TIME" ] && [ -n "$STATUS" ]; then
-            echo "$TIME $STATUS $BASENAME_WITHOUT_EXT" > "$TEMPDIR/${BASENAME_WITHOUT_EXT}_result.txt"
+            echo "$TIME $STATUS $BASENAME_WITHOUT_EXT" >> "$TEMPDIR/collected_result.txt"
         fi
     fi
 done
 
-echo "Extraction script execution completed."
+echo "Extraction script execution completed. Output:"
+cat autoTestOutput/collected_result.txt | sort -n
+
+source ./viper_client-master/viperenv/bin/activate
+
+python3.9 showResults.py

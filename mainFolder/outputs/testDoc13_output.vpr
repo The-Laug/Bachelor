@@ -1,0 +1,27 @@
+import "testDoc13_summationDomain.vpr"
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+    var j: Int
+
+    assume 0 < i < N;
+
+    // Polynomial summation
+    assert powerSum2(0,10) == 385
+    assert powerSum3(1,5) == 225
+
+    // Complex inner function
+    assert 2 * simplesum(0, 5) + 3 * powerSum2(0,5) == 225
+    assert powerSum3(1,3) + 2 * simplesum(1, 3) + (1*(3-1+1)) == 26
+
+    // Edge cases
+    assert simplesum(5, 5) == 5
+    assert simplesum(10, 0) == 0  // Empty summation
+
+    // Negative coefficients
+    assert simplesum(0, 4) - 2 * powerSum2(0,4) == -70
+
+    // Trigonometric (if supported)
+    // assert genericSum0(0, 2)) == sin(0) + sin(1) + sin(2)
+}

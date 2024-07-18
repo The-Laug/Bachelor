@@ -1,0 +1,60 @@
+
+domain genericSumj0 {
+    // uninterpreted function
+    function genericSum0( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum0{
+    genericSum0(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum0 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum0(i,N) == 0
+}
+}
+// axiom rightRecursionGenericSum0 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum0(i,N) == genericSum0(i,N-1) + for k=0 to 2 sum (N+k
+// }
+
+// axiom leftRecursionGenericSum0 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum0(i,N) == for k=0 to 2 sum (i+k + genericSum0(i+1,N)
+// }
+
+//     }
+    
+    
+    
+    
+
+
+domain genericSumk1 {
+    // uninterpreted function
+    function genericSum1( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum1{
+    genericSum1(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum1 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum1(i,N) == 0
+}
+}
+// axiom rightRecursionGenericSum1 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum1(i,N) == genericSum1(i,N-1) + j * (N*(3-1+1
+// }
+
+// axiom leftRecursionGenericSum1 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum1(i,N) == j * (i*(3-1+1 + genericSum1(i+1,N)
+// }
+
+//     }
+    
+    
+    
+    
+

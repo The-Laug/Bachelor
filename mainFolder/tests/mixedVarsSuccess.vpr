@@ -1,0 +1,12 @@
+method try() 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+
+
+    // Summation with mixed variables
+    assert for j=1 to 3 sum (j*i + 2*j*N) == 12*N +6*i
+
+}

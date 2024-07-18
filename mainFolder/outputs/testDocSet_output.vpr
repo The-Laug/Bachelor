@@ -1,0 +1,32 @@
+import "testDocSet_summationDomain.vpr"
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+    var a: Multiset[Int]
+    var b: Multiset[Int]
+    var c: Int
+
+
+
+    //checking variables in inner function
+    assert N * simplesum(0, 10) >2
+
+
+
+    assume 0 < i < N;
+    assume N==10
+    //heere
+    assert setifySumsimpleSum01() == setifySumgenericSum12()
+
+
+    assert setifySumsimpleSum23() == setifySumgenericSum34()
+    //
+    assert (13 in setifySumsimpleSum45())==1
+    assert (14 in setifySumsimpleSum56())==1
+    assert (14 in setifySumgenericSum67())==1
+    assert setifySumconstantSum78() == setifySumsimpleSum89()
+
+}

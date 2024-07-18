@@ -1,0 +1,14 @@
+import "constantsAndVariables_summationDomain.vpr"
+method try() 
+{
+    var i: Int
+    var N: Int
+
+
+
+
+
+    // Summation with constants and variables
+    assert (N*(4-0+1)) + simplesum(0, 4) + (1*(4-0+1)) == 5*N + 15
+    assert simplesum(0, i) + (N*(i-0+1)) == (i+1)*N + i*(i+1)/2
+}

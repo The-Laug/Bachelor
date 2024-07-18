@@ -1,0 +1,17 @@
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+    var a: Multiset[Int]
+    var b: Multiset[Int]
+    var c: Int
+    assume 0<1<N
+
+
+    //checking variables in inner function
+    assert for n=0 to 10 sum (2*n*N) >2
+
+
+}

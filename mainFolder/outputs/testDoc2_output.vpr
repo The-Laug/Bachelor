@@ -6,9 +6,8 @@ method try(x:Int, y: Int)
     var i: Int
     var N: Int
 
-    assume 0 < i < N;
     // assert 2+2==3
 
-    assert 2 * N*N*(21-i) * simplesum(i, 21) == 231    
+    assert simplesum(0, 10) == 55    
 
 }

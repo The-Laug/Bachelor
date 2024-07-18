@@ -14,12 +14,22 @@ axiom iGreaterThanN  {
 
 axiom rightRecursion  {
     forall i:Int, N: Int :: 
-        0 <= i < N ==> simplesum(i,N) == simplesum(i,N-1) + N
+        0 <= i <= N ==> simplesum(i,N) == simplesum(i,N-1) + N
 }
 
 axiom leftRecursion  {
     forall i:Int, N: Int :: 
-        0 <= i < N ==> simplesum(i,N) == i + simplesum(i+1,N)
+        0 <= i <= N ==> simplesum(i,N) == i + simplesum(i+1,N)
+}
+
+axiom rightRecursionNeg  {
+    forall i:Int, N: Int :: 
+        i <= N <=0 ==> simplesum(i,N) == simplesum(i,N-1) + N
+}
+
+axiom leftRecursionNeg  {
+    forall i:Int, N: Int :: 
+        i <= N <=0  ==> simplesum(i,N) == i + simplesum(i+1,N)
 }
 
 axiom closedForm  {
@@ -31,6 +41,17 @@ axiom positiveTerms  {
     forall  i:Int, N: Int :: 
         0 <= i < N ==> simplesum(i,N) >= i
 }
+
+axiom largerIndex  {
+    forall  i:Int, N: Int, N2: Int :: 
+        0 <= i < N < N2 ==> simplesum(i,N) <= simplesum(i,N2)
+}
+
+axiom indexShift  {
+    forall  i:Int, N: Int, j:Int :: 
+        i < j < N ==> simplesum(i,N) == simplesum(i,j) + simplesum(j,N)
+}
+
 
 }
 

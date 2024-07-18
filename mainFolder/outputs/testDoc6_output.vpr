@@ -1,18 +1,17 @@
 import "testDoc6_summationDomain.vpr"
 
-method try(x:Int, y: Int) 
+method try() 
 {
     var i: Int
     var N: Int
     var z: Int
+    var x: Int
+    var y: Int
 
 
     assume 0 < i < N;
-    assume y ==0
-    assume z >1
-    assume x >1
-    // Summation with constants
-    assert 4 * (z*(0-4+1)) * 3 * (x*(0-4+1)) + 1 - y*1 - y*(4-0) + simplesum(0, 4) > 2
-    // assert genericSum0(0, 4) ==2
+
+    // Variable 
+    assert simplesum(i, N) > simplesum(i, N-2)
 
 }

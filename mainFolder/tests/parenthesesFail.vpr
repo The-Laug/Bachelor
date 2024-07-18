@@ -1,0 +1,11 @@
+method try() 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+
+       // Complex expressions
+    assert for j=0 to 3 sum ((j^2 + 1)*(j + 2)) == 74
+    assert for j=1 to 5 sum ((j^2 - j + 1)*(j + 3)) == 230
+}

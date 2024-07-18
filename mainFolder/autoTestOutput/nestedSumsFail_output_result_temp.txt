@@ -1,0 +1,5 @@
+verification id: 165
+[VER] Requesting to stream verification results:
+{"msg_body":{"text":"Viper AST Constructor"},"msg_type":"copyright_report"}
+{"msg_body":{"details":{"result":{"errors":[{"cached":false,"position":{"end":"10:43","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/nestedSumsFail_output.vpr","start":"10:43"},"tag":"parser.error","text":"Parse error: Expected (stmt | \"}\"):10:43, found \") == 18\\n  \". Occurred while parsing: annotated:2:1 / methodDecl:2:8 / stmtBlock:3:1 / braces:3:1 / reservedSym:10:43 (nestedSumsFail_output.vpr@10.43--10.43)"}],"type":"error"},"time":2},"status":"failure"},"msg_type":"ast_construction_result"}
+

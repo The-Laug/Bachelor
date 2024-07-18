@@ -1,0 +1,20 @@
+import "testDoc10_summationDomain.vpr"
+method try() 
+{
+    var i: Int
+    var N: Int
+    var p: Int
+    var a: Int
+    assume 0<i<N
+    assert genericSum0(10, 25)
+    assert a * simplesum(2, 25) + powerSum2(2,25) + 22 * (a*(25-2+1))> a
+    assert (a*(N-i+1))> a
+    assert simplesum(i, N) + (1*(N-i+1))> a
+    assert (2 in setifySumsimpleSum12()) >=1
+    assert (Multiset(2) subset setifySumconstantSum23())
+    assert (2 in setifySumconstantSum34()) > 0
+    assert Multiset(2) subset setifySumconstantSum45() 
+    assert setifySumconstantSum56() == Multiset(2,2,2)
+    assert Multiset(j*j) subset setifySumpower2Sum67() 
+    assert Multiset(j*j) subset setifySumgenericSum78() 
+    }

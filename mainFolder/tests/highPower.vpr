@@ -1,0 +1,15 @@
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+    var j: Int
+
+    assume 0 < i < N;
+
+    // Polynomial summation
+    assert for j=0 to 10 sum (j^2) == 385
+    assert for j=1 to 5 sum (j^3) == 225
+
+    // Trigonometric (if supported)
+    // assert for j=0 to 2 sum (sin(j)) == sin(0) + sin(1) + sin(2)
+}

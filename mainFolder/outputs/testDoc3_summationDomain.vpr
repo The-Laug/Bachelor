@@ -22,79 +22,23 @@ axiom leftRecursion  {
         0 <= i < N ==> simplesum(i,N) == i + simplesum(i+1,N)
 }
 
+axiom closedForm  {
+    forall  N: Int :: 
+        simplesum(1,N) == (N*(N+1))/2
+}
+
+axiom positiveTerms  {
+    forall  i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) >= i
+}
+
+axiom largerIndex  {
+    forall  i:Int, N: Int, N2: Int :: 
+        0 <= i < N < N2 ==> simplesum(i,N) <= simplesum(i,N2)
+}
 
 }
 
 
 
 
-
-domain setifysimpleSum {
-    // uninterpreted function
-    function setifySumsimpleSum( lowerBound:Int, upperBound:Int) : Set[Int]
-
-    axiom setifyInSetsimpleSum {
-        forall lowerBound:Int,upperBound: Int, j: Int ::
-            lowerBound<= j <=upperBound ==> 22333*j in setifySumsimpleSum(lowerBound,upperBound)
-    }
-    
-    axiom setifyNotInSetsimpleSum {
-        forall lowerBound:Int,upperBound: Int, j : Int ::
-            j < lowerBound || j > upperBound ==> !( 22333*j in setifySumsimpleSum(lowerBound,upperBound))
-    }
-
-    }
-    
-    
-    
-    
-    
-
-domain squareSums {
-// uninterpreted function
-function squaresum(i: Int, N: Int): Int
-
-axiom emptySquareSum{
-    squaresum(0,0) == 0
-}
-
-axiom iGreaterThanNSquareSum {
-    forall i:Int, N:Int::
-        i > N ==> squaresum(i,N) == 0
-}
-
-axiom rightRecursionSquareSum {
-    forall i:Int, N: Int :: 
-        0 <= i < N ==> squaresum(i,N) == squaresum(i,N-1) + N*N
-}
-
-axiom leftRecursionSquareSum {
-    forall i:Int, N: Int :: 
-        0 <= i < N ==> squaresum(i,N) == i*i + squaresum(i+1,N)
-}
-}
-
-
-
-
-
-domain setifysquareSum {
-    // uninterpreted function
-    function setifySumsquareSum( lowerBound:Int, upperBound:Int) : Set[Int]
-
-    axiom setifyInSetsquareSum {
-        forall lowerBound:Int,upperBound: Int, j: Int ::
-            lowerBound<= j <=upperBound ==> j*j in setifySumsquareSum(lowerBound,upperBound)
-    }
-    
-    axiom setifyNotInSetsquareSum {
-        forall lowerBound:Int,upperBound: Int, j : Int ::
-            j < lowerBound || j > upperBound ==> !( j*j in setifySumsquareSum(lowerBound,upperBound))
-    }
-
-    }
-    
-    
-    
-    
-    

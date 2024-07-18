@@ -1,0 +1,259 @@
+
+domain genericSumj0 {
+    // uninterpreted function
+    function genericSum0( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum0{
+    genericSum0(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum0 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum0(i,N) == 0
+}
+}
+// axiom rightRecursionGenericSum0 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum0(i,N) == genericSum0(i,N-1) + N^N
+// }
+
+// axiom leftRecursionGenericSum0 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum0(i,N) == i^i + genericSum0(i+1,N)
+// }
+
+//     }
+    
+    
+    
+    
+
+
+domain simpleSums {
+// uninterpreted function
+function simplesum(i: Int, N: Int): Int
+
+axiom emptySum {
+    simplesum(0,0) == 0
+}
+
+axiom iGreaterThanN  {
+    forall i:Int, N:Int::
+        i > N ==> simplesum(i,N) == 0
+}
+
+axiom rightRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i <= N ==> simplesum(i,N) == simplesum(i,N-1) + N
+}
+
+axiom leftRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i <= N ==> simplesum(i,N) == i + simplesum(i+1,N)
+}
+
+axiom rightRecursionNeg  {
+    forall i:Int, N: Int :: 
+        i <= N <=0 ==> simplesum(i,N) == simplesum(i,N-1) + N
+}
+
+axiom leftRecursionNeg  {
+    forall i:Int, N: Int :: 
+        i <= N <=0  ==> simplesum(i,N) == i + simplesum(i+1,N)
+}
+
+axiom closedForm  {
+    forall  N: Int :: 
+        simplesum(1,N) == (N*(N+1))/2
+}
+
+axiom positiveTerms  {
+    forall  i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) >= i
+}
+
+axiom largerIndex  {
+    forall  i:Int, N: Int, N2: Int :: 
+        0 <= i < N < N2 ==> simplesum(i,N) <= simplesum(i,N2)
+}
+
+axiom indexShift  {
+    forall  i:Int, N: Int, j:Int :: 
+        i < j < N ==> simplesum(i,N) == simplesum(i,j) + simplesum(j,N)
+}
+
+
+}
+
+
+
+
+
+domain powerSumDomain2 {
+// uninterpreted function
+function powerSum2(i: Int, N: Int): Int
+
+axiom emptyPowerSum2{
+    powerSum2(0,0) == 0
+}
+
+axiom iGreaterThanNPowerSum2 {
+    forall i:Int, N:Int::
+        i > N ==> powerSum2(i,N) == 0
+}
+
+axiom rightRecursionPowerSum2 {
+    forall i:Int, N: Int :: 
+        0 <= i <= N ==> powerSum2(i,N) == powerSum2(i,N-1) + N*N
+}
+
+axiom leftRecursionPowerSum2 {
+    forall i:Int, N: Int :: 
+        0 <= i <= N ==> powerSum2(i,N) == i*i + powerSum2(i+1,N)
+}
+}
+
+
+
+
+
+    domain setifysimpleSum1 {
+    // uninterpreted function
+    function setifySumsimpleSum12() : Multiset[Int]
+
+    axiom setifyInSetsimpleSum1 {
+        forall j: Int ::
+            0<= j <=10 ==> (j in setifySumsimpleSum12())==1
+    }
+    
+    axiom setifyNotInSetsimpleSum1 {
+        forall j : Int ::
+            j < 0 ==> ( (j in setifySumsimpleSum12())==0 )
+    }
+
+    axiom setifyAlsoNotInSetsimpleSum1 {
+        forall j : Int ::
+            j > 10 ==> ( (j in setifySumsimpleSum12())==0 )
+    }
+
+    }
+        
+    
+
+    domain setifyconstantSum2 {
+    // uninterpreted function
+    function setifySumconstantSum23() : Multiset[Int]
+
+    axiom setifyInSetconstantSum2 {
+            (2 in setifySumconstantSum23())== 10-0
+    }
+    
+    axiom setifyNotInSetconstantSum2 {
+        forall n : Int ::
+            n != j ==> ( (j in setifySumconstantSum23())==0 )
+    }
+
+    }
+    
+    
+    
+
+    domain setifyconstantSum3 {
+    // uninterpreted function
+    function setifySumconstantSum34() : Multiset[Int]
+
+    axiom setifyInSetconstantSum3 {
+            (2 in setifySumconstantSum34())== 10-0
+    }
+    
+    axiom setifyNotInSetconstantSum3 {
+        forall n : Int ::
+            n != j ==> ( (j in setifySumconstantSum34())==0 )
+    }
+
+    }
+    
+    
+    
+
+    domain setifyconstantSum4 {
+    // uninterpreted function
+    function setifySumconstantSum45() : Multiset[Int]
+
+    axiom setifyInSetconstantSum4 {
+            (2 in setifySumconstantSum45())== 3-0
+    }
+    
+    axiom setifyNotInSetconstantSum4 {
+        forall n : Int ::
+            n != j ==> ( (j in setifySumconstantSum45())==0 )
+    }
+
+    }
+    
+    
+    
+
+    domain setifyconstantSum5 {
+    // uninterpreted function
+    function setifySumconstantSum56() : Multiset[Int]
+
+    axiom setifyInSetconstantSum5 {
+            (2 in setifySumconstantSum56())== 3-0
+    }
+    
+    axiom setifyNotInSetconstantSum5 {
+        forall n : Int ::
+            n != j ==> ( (j in setifySumconstantSum56())==0 )
+    }
+
+    }
+    
+    
+    
+
+    domain setifypower2Sum6 {
+    // uninterpreted function
+    function setifySumpower2Sum67() : Multiset[Int]
+
+    axiom setifyInSetpower2Sum6 {
+        forall j: Int ::
+            0<= j <=5 ==> (j*j in setifySumpower2Sum67())==1
+    }
+    
+    axiom setifyNotInSetpower2Sum6 {
+        forall j : Int ::
+            j < 0 ==> ( (j*j in setifySumpower2Sum67())==0 )
+    }
+
+    axiom setifyAlsoNotInSetpower2Sum6 {
+        forall j : Int ::
+            j > 5 ==> ( (j*j in setifySumpower2Sum67())==0 )
+    }
+
+    }
+        
+    
+
+    domain setifygenericSum7 {
+    // uninterpreted function
+    function setifySumgenericSum78() : Multiset[Int]
+
+    axiom setifyInSetgenericSum7 {
+        forall j: Int ::
+            0<= j <=5 ==> (j^a in setifySumgenericSum78())==1
+    }
+    
+    axiom setifyNotInSetgenericSum7 {
+        forall j : Int ::
+            j < 0 ==> ( (j^a in setifySumgenericSum78())==0 )
+    }
+
+    axiom setifyAlsoNotInSetgenericSum7 {
+        forall j : Int ::
+            j > 5 ==> ( (j^a in setifySumgenericSum78())==0 )
+    }
+
+    }
+        
+    

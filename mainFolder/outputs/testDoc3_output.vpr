@@ -10,7 +10,6 @@ method try(x:Int, y: Int)
     // assert 2+2==3
 
     // assert 22333 * simplesum(0, 2) == 2
-    assert squaresum(0, 58) == 66729
-    assert simplesum(0, 21) + simplesum(0, 21) + 22 * squaresum(0, 21) - 203 * squaresum(0, 21) == 231    
+    assert simplesum(0, 58) + simplesum(0, 58) ==  simplesum(0, 58) + simplesum(0, 58)
 
 }

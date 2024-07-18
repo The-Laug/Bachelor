@@ -1,0 +1,175 @@
+
+    domain setifyconstantSum0 {
+    // uninterpreted function
+    function setifySumconstantSum01() : Multiset[Int]
+
+    axiom setifyInSetconstantSum0 {
+            (2 in setifySumconstantSum01())== 10-0
+    }
+    
+    axiom setifyNotInSetconstantSum0 {
+        forall n : Int ::
+            n != 2 ==> ( (n in setifySumconstantSum01())==0 )
+    }
+
+    }
+    
+    
+    
+
+    domain setifyvariableSum1 {
+    // uninterpreted function
+    function setifySumvariableSum12() : Multiset[Int]
+
+    axiom setifyInSetvariableSum1 {
+        forall N : Int  ::
+            (N in setifySumvariableSum12())== 10-0
+    }
+    
+    axiom setifyNotInSetvariableSum1 {
+        forall n : Int, N : Int ::
+            n != N ==> ( (n in setifySumvariableSum12())==0 )
+    }
+
+    }
+    
+    
+    
+
+    domain setifysimpleSum2 {
+    // uninterpreted function
+    function setifySumsimpleSum23() : Multiset[Int]
+
+    axiom setifyInSetsimpleSum2 {
+        forall j: Int ::
+            0<= j <=10 ==> (j in setifySumsimpleSum23())==1
+    }
+    
+    axiom setifyNotInSetsimpleSum2 {
+        forall j : Int ::
+            j < 0 ==> ( (j in setifySumsimpleSum23())==0 )
+    }
+
+    axiom setifyAlsoNotInSetsimpleSum2 {
+        forall j : Int ::
+            j > 10 ==> ( (j in setifySumsimpleSum23())==0 )
+    }
+
+    }
+        
+    
+
+    domain setifysimpleSum3 {
+    // uninterpreted function
+    function setifySumsimpleSum34() : Multiset[Int]
+
+    axiom setifyInSetsimpleSum3 {
+        forall j: Int ::
+            0<= j <=10 ==> (j in setifySumsimpleSum34())==1
+    }
+    
+    axiom setifyNotInSetsimpleSum3 {
+        forall j : Int ::
+            j < 0 ==> ( (j in setifySumsimpleSum34())==0 )
+    }
+
+    axiom setifyAlsoNotInSetsimpleSum3 {
+        forall j : Int ::
+            j > 10 ==> ( (j in setifySumsimpleSum34())==0 )
+    }
+
+    }
+        
+    
+
+    domain setifygenericSum4 {
+    // uninterpreted function
+    function setifySumgenericSum45() : Multiset[Int]
+
+    axiom setifyInSetgenericSum4 {
+        forall j: Int ::
+            0<= j <=10 ==> (10-j in setifySumgenericSum45())==1
+    }
+    
+    axiom setifyNotInSetgenericSum4 {
+        forall j : Int ::
+            j < 0 ==> ( (10-j in setifySumgenericSum45())==0 )
+    }
+
+    axiom setifyAlsoNotInSetgenericSum4 {
+        forall j : Int ::
+            j > 10 ==> ( (10-j in setifySumgenericSum45())==0 )
+    }
+
+    }
+        
+    
+
+    domain setifysimpleSum5 {
+    // uninterpreted function
+    function setifySumsimpleSum56() : Multiset[Int]
+
+    axiom setifyInSetsimpleSum5 {
+        forall j: Int ::
+            0<= j <=10 ==> (j in setifySumsimpleSum56())==1
+    }
+    
+    axiom setifyNotInSetsimpleSum5 {
+        forall j : Int ::
+            j < 0 ==> ( (j in setifySumsimpleSum56())==0 )
+    }
+
+    axiom setifyAlsoNotInSetsimpleSum5 {
+        forall j : Int ::
+            j > 10 ==> ( (j in setifySumsimpleSum56())==0 )
+    }
+
+    }
+        
+    
+
+    domain setifygenericSum6 {
+    // uninterpreted function
+    function setifySumgenericSum67() : Multiset[Int]
+
+    axiom setifyInSetgenericSum6 {
+        forall j: Int, N:Int ::
+            0<= j <=N ==> (N-j in setifySumgenericSum67())==1
+    }
+    
+    axiom setifyNotInSetgenericSum6 {
+        forall j : Int, N:Int ::
+            j < 0 ==> ( (N-j in setifySumgenericSum67())==0 )
+    }
+
+    axiom setifyAlsoNotInSetgenericSum6 {
+        forall j : Int, N:Int ::
+            j > N ==> ( (N-j in setifySumgenericSum67())==0 )
+    }
+
+    }
+        
+    
+
+    domain setifysimpleSum7 {
+    // uninterpreted function
+    function setifySumsimpleSum78() : Multiset[Int]
+
+    axiom setifyInSetsimpleSum7 {
+        forall j: Int, N:Int ::
+            0<= j <=N ==> (j in setifySumsimpleSum78())==1
+    }
+    
+    axiom setifyNotInSetsimpleSum7 {
+        forall j : Int ::
+            j < 0 ==> ( (j in setifySumsimpleSum78())==0 )
+    }
+
+    axiom setifyAlsoNotInSetsimpleSum7 {
+        forall j : Int, N:Int ::
+            j > N ==> ( (j in setifySumsimpleSum78())==0 )
+    }
+
+    }
+        
+    

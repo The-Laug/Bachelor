@@ -22,6 +22,20 @@ axiom leftRecursion  {
         0 <= i < N ==> simplesum(i,N) == i + simplesum(i+1,N)
 }
 
+axiom closedForm  {
+    forall  N: Int :: 
+        simplesum(1,N) == (N*(N+1))/2
+}
+
+axiom positiveTerms  {
+    forall  i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) >= i
+}
+
+axiom largerIndex  {
+    forall  i:Int, N: Int, N2: Int :: 
+        0 <= i < N < N2 ==> simplesum(i,N) <= simplesum(i,N2)
+}
 
 }
 
@@ -29,37 +43,30 @@ axiom leftRecursion  {
 
 
 
-domain powerSumDomain5 {
-// uninterpreted function
-function powerSum5(i: Int, N: Int): Int
+    domain setifypower5Sum0 {
+    // uninterpreted function
+    function setifySumpower5Sum01() : Multiset[Int]
 
-axiom emptyPowerSum5{
-    powerSum5(0,0) == 0
-}
+    axiom setifyInSetpower5Sum0 {
+        forall i: Int ::
+            c<= i <=d ==> (i*i*i*i*i in setifySumpower5Sum01())==1
+    }
+    
+    axiom setifyNotInSetpower5Sum0 {
+        forall i : Int ::
+            i < c ==> ( (i*i*i*i*i in setifySumpower5Sum01())==0 )
+    }
 
-axiom iGreaterThanNPowerSum5 {
-    forall i:Int, N:Int::
-        i > N ==> powerSum5(i,N) == 0
-}
+    axiom setifyAlsoNotInSetpower5Sum0 {
+        forall i : Int ::
+            i > d ==> ( (i*i*i*i*i in setifySumpower5Sum01())==0 )
+    }
 
-axiom rightRecursionPowerSum5 {
-    forall i:Int, N: Int :: 
-        0 <= i < N ==> powerSum5(i,N) == powerSum5(i,N-1) + N*N*N*N*N
-}
+    }
+        
+    
 
-axiom leftRecursionPowerSum5 {
-    forall i:Int, N: Int :: 
-        0 <= i < N ==> powerSum5(i,N) == i*i*i*i*i + powerSum5(i+1,N)
-}
-}
-
-
-
-
-
-
-
-domain setifysimpleSum1 {
+    domain setifysimpleSum1 {
     // uninterpreted function
     function setifySumsimpleSum12() : Multiset[Int]
 
@@ -79,13 +86,10 @@ domain setifysimpleSum1 {
     }
 
     }
-    
-    
-    
-    
+        
     
 
-domain setifysimpleSum2 {
+    domain setifysimpleSum2 {
     // uninterpreted function
     function setifySumsimpleSum23() : Multiset[Int]
 
@@ -105,13 +109,10 @@ domain setifysimpleSum2 {
     }
 
     }
-    
-    
-    
-    
+        
     
 
-domain setifysimpleSum3 {
+    domain setifysimpleSum3 {
     // uninterpreted function
     function setifySumsimpleSum34() : Multiset[Int]
 
@@ -131,86 +132,59 @@ domain setifysimpleSum3 {
     }
 
     }
-    
-    
-    
-    
+        
     
 
-domain setifyconstantSum4 {
+    domain setifyconstantSum4 {
     // uninterpreted function
     function setifySumconstantSum45() : Multiset[Int]
 
     axiom setifyInSetconstantSum4 {
-        forall i: Int ::
-            0<= i <=22 ==> (2 in setifySumconstantSum45())==1
+            (2 in setifySumconstantSum45())== 22-0
     }
     
     axiom setifyNotInSetconstantSum4 {
-        forall i : Int ::
-            i < 0 ==> ( (2 in setifySumconstantSum45())==0 )
-    }
-
-    axiom setifyAlsoNotInSetconstantSum4 {
-        forall i : Int ::
-            i > 22 ==> ( (2 in setifySumconstantSum45())==0 )
+        forall n : Int ::
+            n != i ==> ( (i in setifySumconstantSum45())==0 )
     }
 
     }
     
     
     
-    
-    
 
-domain setifyconstantSum5 {
+    domain setifyconstantSum5 {
     // uninterpreted function
     function setifySumconstantSum56() : Multiset[Int]
 
     axiom setifyInSetconstantSum5 {
-        forall i: Int ::
-            0<= i <=10 ==> (2 in setifySumconstantSum56())==1
+            (2 in setifySumconstantSum56())== 10-0
     }
     
     axiom setifyNotInSetconstantSum5 {
-        forall i : Int ::
-            i < 0 ==> ( (2 in setifySumconstantSum56())==0 )
-    }
-
-    axiom setifyAlsoNotInSetconstantSum5 {
-        forall i : Int ::
-            i > 10 ==> ( (2 in setifySumconstantSum56())==0 )
+        forall n : Int ::
+            n != i ==> ( (i in setifySumconstantSum56())==0 )
     }
 
     }
     
     
     
-    
-    
 
-domain setifyconstantSum6 {
+    domain setifyconstantSum6 {
     // uninterpreted function
     function setifySumconstantSum67() : Multiset[Int]
 
     axiom setifyInSetconstantSum6 {
-        forall i: Int ::
-            10<= i <=22 ==> (2 in setifySumconstantSum67())==1
+            (2 in setifySumconstantSum67())== 22-10
     }
     
     axiom setifyNotInSetconstantSum6 {
-        forall i : Int ::
-            i < 10 ==> ( (2 in setifySumconstantSum67())==0 )
-    }
-
-    axiom setifyAlsoNotInSetconstantSum6 {
-        forall i : Int ::
-            i > 22 ==> ( (2 in setifySumconstantSum67())==0 )
+        forall n : Int ::
+            n != i ==> ( (i in setifySumconstantSum67())==0 )
     }
 
     }
-    
-    
     
     
     

@@ -1,0 +1,15 @@
+import "simpleTmpTest_summationDomain.vpr"
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+    var c: Int
+
+    assume 0 < i < N;
+    // assert 2+2==3
+
+    assert 
+
+}

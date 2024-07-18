@@ -1,45 +1,23 @@
 
-domain simpleSums {
-// uninterpreted function
-function simplesum(i: Int, N: Int): Int
+    domain setifysimpleSum0 {
+    // uninterpreted function
+    function setifySumsimpleSum01() : Multiset[Int]
 
-axiom emptySum {
-    simplesum(0,0) == 0
-}
+    axiom setifyInSetsimpleSum0 {
+        forall n: Int ::
+            i<= n <=21 ==> (n in setifySumsimpleSum01())==1
+    }
+    
+    axiom setifyNotInSetsimpleSum0 {
+        forall n : Int ::
+            n < i ==> ( (n in setifySumsimpleSum01())==0 )
+    }
 
-axiom iGreaterThanN  {
-    forall i:Int, N:Int::
-        i > N ==> simplesum(i,N) == 0
-}
+    axiom setifyAlsoNotInSetsimpleSum0 {
+        forall n : Int ::
+            n > 21 ==> ( (n in setifySumsimpleSum01())==0 )
+    }
 
-axiom rightRecursion  {
-    forall i:Int, N: Int :: 
-        0 <= i < N ==> simplesum(i,N) == simplesum(i,N-1) + N
-}
-
-axiom leftRecursion  {
-    forall i:Int, N: Int :: 
-        0 <= i < N ==> simplesum(i,N) == i + simplesum(i+1,N)
-}
-
-axiom closedForm  {
-    forall  N: Int :: 
-        simplesum(1,N) == (N*(N+1))/2
-}
-
-axiom positiveTerms  {
-    forall  i:Int, N: Int :: 
-        0 <= i < N ==> simplesum(i,N) >= i
-}
-
-axiom largerIndex  {
-    forall  i:Int, N: Int, N2: Int :: 
-        0 <= i < N < N2 ==> simplesum(i,N) <= simplesum(i,N2)
-}
-
-}
-
-
-
-
-
+    }
+        
+    

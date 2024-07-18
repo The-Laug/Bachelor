@@ -1,0 +1,171 @@
+
+domain powerSumDomain3 {
+// uninterpreted function
+function powerSum3(i: Int, N: Int): Int
+
+axiom emptyPowerSum3{
+    powerSum3(0,0) == 0
+}
+
+axiom iGreaterThanNPowerSum3 {
+    forall i:Int, N:Int::
+        i > N ==> powerSum3(i,N) == 0
+}
+
+axiom rightRecursionPowerSum3 {
+    forall i:Int, N: Int :: 
+        0 <= i <= N ==> powerSum3(i,N) == powerSum3(i,N-1) + N*N*N
+}
+
+axiom leftRecursionPowerSum3 {
+    forall i:Int, N: Int :: 
+        0 <= i <= N ==> powerSum3(i,N) == i*i*i + powerSum3(i+1,N)
+}
+
+axiom positiveTermsPowerSum3  {
+    forall  i:Int, N: Int :: 
+        0 <= i < N ==> powerSum3(i,N) >= i
+}
+
+axiom largerIndexPowerSum3  {
+    forall  i:Int, N: Int, N2: Int :: 
+        0 <= i < N < N2 ==> powerSum3(i,N) <= powerSum3(i,N2)
+}
+
+axiom indexShiftOnZeroPowerSum3  {
+    forall  i:Int, N: Int :: 
+        i < 0 < N ==> powerSum3(i,N) == powerSum3(i,0) + powerSum3(0,N)
+}
+
+}
+
+
+
+
+
+    domain setifypower3Sum0 {
+    // uninterpreted function
+    function setifySumpower3Sum01() : Multiset[Int]
+
+    axiom setifyInSetpower3Sum0 {
+        forall n: Int ::
+            i<= n <=21 ==> (n*n*n in setifySumpower3Sum01())==1
+    }
+    
+    axiom setifyNotInSetpower3Sum0 {
+        forall n : Int ::
+            n < i ==> ( (n*n*n in setifySumpower3Sum01())==0 )
+    }
+
+    axiom setifyAlsoNotInSetpower3Sum0 {
+        forall n : Int ::
+            n > 21 ==> ( (n*n*n in setifySumpower3Sum01())==0 )
+    }
+
+    }
+        
+    
+
+domain genericSumn1 {
+    // uninterpreted function
+    function genericSum1( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum1{
+    genericSum1(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum1 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum1(i,N) == 0
+}
+}
+// axiom rightRecursionGenericSum1 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum1(i,N) == genericSum1(i,N-1) + N*N
+// }
+
+// axiom leftRecursionGenericSum1 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum1(i,N) == i*i + genericSum1(i+1,N)
+// }
+
+//     }
+    
+    
+    
+    
+
+
+domain genericSumn2 {
+    // uninterpreted function
+    function genericSum2( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum2{
+    genericSum2(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum2 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum2(i,N) == 0
+}
+}
+// axiom rightRecursionGenericSum2 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum2(i,N) == genericSum2(i,N-1) + N*N
+// }
+
+// axiom leftRecursionGenericSum2 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum2(i,N) == i*i + genericSum2(i+1,N)
+// }
+
+//     }
+    
+    
+    
+    
+
+
+domain powerSumDomain12 {
+// uninterpreted function
+function powerSum12(i: Int, N: Int): Int
+
+axiom emptyPowerSum12{
+    powerSum12(0,0) == 0
+}
+
+axiom iGreaterThanNPowerSum12 {
+    forall i:Int, N:Int::
+        i > N ==> powerSum12(i,N) == 0
+}
+
+axiom rightRecursionPowerSum12 {
+    forall i:Int, N: Int :: 
+        0 <= i <= N ==> powerSum12(i,N) == powerSum12(i,N-1) + N*N*N*N*N*N*N*N*N*N*N*N
+}
+
+axiom leftRecursionPowerSum12 {
+    forall i:Int, N: Int :: 
+        0 <= i <= N ==> powerSum12(i,N) == i*i*i*i*i*i*i*i*i*i*i*i + powerSum12(i+1,N)
+}
+
+axiom positiveTermsPowerSum12  {
+    forall  i:Int, N: Int :: 
+        0 <= i < N ==> powerSum12(i,N) >= i
+}
+
+axiom largerIndexPowerSum12  {
+    forall  i:Int, N: Int, N2: Int :: 
+        0 <= i < N < N2 ==> powerSum12(i,N) <= powerSum12(i,N2)
+}
+
+axiom indexShiftOnZeroPowerSum12  {
+    forall  i:Int, N: Int :: 
+        i < 0 < N ==> powerSum12(i,N) == powerSum12(i,0) + powerSum12(0,N)
+}
+
+}
+
+
+
+
