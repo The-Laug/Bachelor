@@ -133,27 +133,32 @@ axiom iGreaterThanNGenericSum0 {
     
 
 
-domain geometricSumDomain2 {
-// uninterpreted function
-function geometricSum2(i: Int, N: Int): Int
+domain genericSumj1 {
+    // uninterpreted function
+    function genericSum1( lowerBound:Int, upperBound:Int) : Int
 
-axiom iGreaterThanNgeometricSum2 {
+axiom emptyGenericSum1{
+    genericSum1(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum1 {
     forall i:Int, N:Int::
-        i > N ==> geometricSum2(i,N) == 0
+        i > N ==> genericSum1(i,N) == 0
 }
-
-axiom emptygeometricSum2{
-    forall i:Int, N:Int::
-    i > 0 && N > i==> geometricSum2(i,N) == 0
 }
+// axiom rightRecursionGenericSum1 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum1(i,N) == genericSum1(i,N-1) + 2^N
+// }
 
-axiom nonEmptygeometricSum2{
-    forall i:Int, N:Int::
-    i < 0 < N ==> geometricSum2(i,N) == 1
-}
+// axiom leftRecursionGenericSum1 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum1(i,N) == 2^i + genericSum1(i+1,N)
+// }
 
-}
-
-
-
+//     }
+    
+    
+    
+    
 

@@ -28,33 +28,3 @@ axiom iGreaterThanNGenericSum0 {
     
     
 
-
-domain genericSumk1 {
-    // uninterpreted function
-    function genericSum1( lowerBound:Int, upperBound:Int) : Int
-
-axiom emptyGenericSum1{
-    genericSum1(0,0) == 0
-}
-
-axiom iGreaterThanNGenericSum1 {
-    forall i:Int, N:Int::
-        i > N ==> genericSum1(i,N) == 0
-}
-}
-// axiom rightRecursionGenericSum1 {
-//     forall i:Int, N: Int :: 
-//         0 <= i <= N ==> genericSum1(i,N) == genericSum1(i,N-1) + j * (N*(3-1+1
-// }
-
-// axiom leftRecursionGenericSum1 {
-//     forall i:Int, N: Int :: 
-//         0 <= i <= N ==> genericSum1(i,N) == j * (i*(3-1+1 + genericSum1(i+1,N)
-// }
-
-//     }
-    
-    
-    
-    
-

@@ -1,4 +1,34 @@
 
+domain genericSumj0 {
+    // uninterpreted function
+    function genericSum0( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum0{
+    genericSum0(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum0 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum0(i,N) == 0
+}
+}
+// axiom rightRecursionGenericSum0 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum0(i,N) == genericSum0(i,N-1) + N + N + 1
+// }
+
+// axiom leftRecursionGenericSum0 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum0(i,N) == N + i + 1 + genericSum0(i+1,N)
+// }
+
+//     }
+    
+    
+    
+    
+
+
 domain simpleSums {
 // uninterpreted function
 function simplesum(i: Int, N: Int): Int
@@ -47,14 +77,44 @@ axiom largerIndex  {
         0 <= i < N < N2 ==> simplesum(i,N) <= simplesum(i,N2)
 }
 
-// axiom indexShift  {
-//     forall  i:Int, N: Int, j:Int :: 
-//         i < j < N ==> simplesum(i,N) == simplesum(i,j) + simplesum(j,N)
-// }
+axiom indexShiftOnZero  {
+    forall  i:Int, N: Int :: 
+        i < 0 < N ==> simplesum(i,N) == simplesum(i,0) + simplesum(0,N)
+}
 
 
 }
 
 
 
+
+
+domain genericSumj1 {
+    // uninterpreted function
+    function genericSum1( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum1{
+    genericSum1(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum1 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum1(i,N) == 0
+}
+}
+// axiom rightRecursionGenericSum1 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum1(i,N) == genericSum1(i,N-1) + N + N
+// }
+
+// axiom leftRecursionGenericSum1 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum1(i,N) == i + N + genericSum1(i+1,N)
+// }
+
+//     }
+    
+    
+    
+    
 

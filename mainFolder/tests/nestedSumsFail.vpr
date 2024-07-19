@@ -7,6 +7,4 @@ method try()
 
     // Summation with nested sums
     assert for j=0 to 2 sum (for k=0 to 2 sum (j+k)) == 18
-    assert for j=1 to 3 sum (for k=1 to 3 sum (j*k)) == 90
-
 }

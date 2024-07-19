@@ -521,10 +521,10 @@ let rec interpretSum (indexVariable:string) (lowerBound:string) (upperBound:stri
             let power = int powerString
             powerSum outputpath power |> ignore
             sprintf "powerSum%s(%s,%s)"  (powerString.Trim()) lowerBound upperBound
-        | (IndexVarGeometricMatch indexVariable powerString) when (not (strContainsVariable powerString)) -> // where n is the indexvariable n^expression, where expression does not contain a ascii character
-            let power = int powerString
-            geometricSum outputpath power |> ignore
-            sprintf "geometricSum%s(%s,%s)"  (powerString.Trim()) lowerBound upperBound
+        // | (IndexVarGeometricMatch indexVariable powerString) when (not (strContainsVariable powerString)) -> // where n is the indexvariable n^expression, where expression does not contain a ascii character
+        //     let power = int powerString
+        //     geometricSum outputpath power |> ignore
+        //     sprintf "geometricSum%s(%s,%s)"  (powerString.Trim()) lowerBound upperBound
         | (c: string) when c=indexVariable  -> // SimpleSum
             simpleSumDomain (outputpath) |> ignore
             sprintf "simplesum(%s, %s)" lowerBound upperBound

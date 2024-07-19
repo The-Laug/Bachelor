@@ -1,5 +1,0 @@
-verification id: 216
-[VER] Requesting to stream verification results:
-{"msg_body":{"text":"Viper AST Constructor"},"msg_type":"copyright_report"}
-{"msg_body":{"details":{"result":{"errors":[{"cached":false,"position":{"end":"15:1","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/simpleTmpTest_output.vpr","start":"15:1"},"tag":"parser.error","text":"Parse error: Expected (parens | atom):15:1, found \"}\\n\". Occurred while parsing: annotated:4:1 / methodDecl:4:8 / stmtBlock:5:1 / braces:5:1 / delimitedTrailing:6:5 / stmt:13:5 / assertStmt:15:1 / exp:15:1 / expParen:15:1 / iteExpr:15:1 / iffExp:15:1 / implExp:15:1 / magicWandExp:15:1 / orExp:15:1 / andExp:15:1 / eqExpParen:15:1 / cmpExp:15:1 / sum:15:1 / term:15:1 / suffixExpr:15:1 / atomParen:15:1 (simpleTmpTest_output.vpr@15.1--15.1)"}],"type":"error"},"time":6},"status":"failure"},"msg_type":"ast_construction_result"}
-

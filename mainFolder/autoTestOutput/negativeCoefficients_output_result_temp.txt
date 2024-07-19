@@ -1,4 +1,4 @@
-verification id: 211
+verification id: 270
 [VER] Requesting to stream verification results:
 {"msg_body":{"text":"Viper AST Constructor"},"msg_type":"copyright_report"}
 {"msg_body":[],"msg_type":"warnings_during_parsing"}
@@ -42,7 +42,7 @@ verification id: 211
 {"msg_body":{"quantifier":"(forall i: Int, N: Int :: { powerSum2(i, N) } 0 <= i && i < N ==> powerSum2(i, N) >= i * i)","quantifier_type":"Forall","triggers":[["powerSum2(i, N)"]]},"msg_type":"quantifier_chosen_triggers_message"}
 {"msg_body":{"quantifier":"(forall i: Int, N: Int, N2: Int :: { powerSum2(i, N), powerSum2(i, N2) } 0 <= i && i < N && N < N2 ==> powerSum2(i, N) <= powerSum2(i, N2))","quantifier_type":"Forall","triggers":[["powerSum2(i, N)","powerSum2(i, N2)"]]},"msg_type":"quantifier_chosen_triggers_message"}
 {"msg_body":{"quantifier":"(forall i: Int, N: Int :: { powerSum2(i, N) } { powerSum2(i, 0), powerSum2(0, N) } i < 0 && 0 < N ==> powerSum2(i, N) == powerSum2(i, 0) + powerSum2(0, N))","quantifier_type":"Forall","triggers":[["powerSum2(i, N)"],["powerSum2(i, 0)","powerSum2(0, N)"]]},"msg_type":"quantifier_chosen_triggers_message"}
-{"msg_body":{"details":{"cached":false,"entity":{"name":"try","position":{"end":"14:2","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/negativeCoefficients_output.vpr","start":"2:1"},"type":"method"},"result":{"errors":[{"cached":false,"counterexamples":[],"position":{"end":"12:55","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/negativeCoefficients_output.vpr","start":"12:12"},"tag":"assert.failed:assertion.false","text":"Assert might fail. Assertion simplesum(0, 4) - 2 * powerSum2(0, 4) == -70 might not hold. (negativeCoefficients_output.vpr@12.12--12.55)\n"}],"type":"error"},"time":16},"kind":"for_entity","status":"failure","verifier":"silicon"},"msg_type":"verification_result"}
+{"msg_body":{"details":{"cached":false,"entity":{"name":"try","position":{"end":"14:2","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/negativeCoefficients_output.vpr","start":"2:1"},"type":"method"},"time":6},"kind":"for_entity","status":"success","verifier":"silicon"},"msg_type":"verification_result"}
 {"msg_body":{"msg":"verification_termination_message"},"msg_type":"verification_termination_message"}
-{"msg_body":{"details":{"result":{"errors":[{"cached":false,"counterexamples":[],"position":{"end":"12:55","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/negativeCoefficients_output.vpr","start":"12:12"},"tag":"assert.failed:assertion.false","text":"Assert might fail. Assertion simplesum(0, 4) - 2 * powerSum2(0, 4) == -70 might not hold. (negativeCoefficients_output.vpr@12.12--12.55)\n"}],"type":"error"},"time":254},"kind":"overall","status":"failure","verifier":"silicon"},"msg_type":"verification_result"}
+{"msg_body":{"details":{"time":247},"kind":"overall","status":"success","verifier":"silicon"},"msg_type":"verification_result"}
 

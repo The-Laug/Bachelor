@@ -40,7 +40,7 @@ for i, status in enumerate(statuses):
 # Plotting
 plt.figure(figsize=(12, 8))
 bars = plt.barh(test_names, runtimes, color=colors)
-plt.xlabel('Verifyer Runtimes in ms')
+plt.xlabel('Verifier Runtimes in ms')
 plt.ylabel('Tests')
 plt.title('Quantitative tests')
 

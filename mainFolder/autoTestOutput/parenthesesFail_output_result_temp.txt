@@ -1,5 +1,5 @@
-verification id: 214
+verification id: 273
 [VER] Requesting to stream verification results:
 {"msg_body":{"text":"Viper AST Constructor"},"msg_type":"copyright_report"}
-{"msg_body":{"details":{"result":{"errors":[{"cached":false,"position":{"end":"10:51","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/parenthesesFail_output.vpr","start":"10:51"},"tag":"parser.error","text":"Parse error: Expected (stmt | \"}\"):10:51, found \") == 74\\n  \". Occurred while parsing: annotated:2:1 / methodDecl:2:8 / stmtBlock:3:1 / braces:3:1 / reservedSym:10:51 (parenthesesFail_output.vpr@10.51--10.51)"}],"type":"error"},"time":15},"status":"failure"},"msg_type":"ast_construction_result"}
+{"msg_body":{"details":{"result":{"errors":[{"cached":false,"position":{"end":"10:51","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/parenthesesFail_output.vpr","start":"10:51"},"tag":"parser.error","text":"Parse error: Expected (stmt | \"}\"):10:51, found \") == 74\\n  \". Occurred while parsing: annotated:2:1 / methodDecl:2:8 / stmtBlock:3:1 / braces:3:1 / reservedSym:10:51 (parenthesesFail_output.vpr@10.51--10.51)"}],"type":"error"},"time":16},"status":"failure"},"msg_type":"ast_construction_result"}
 

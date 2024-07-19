@@ -1,7 +1,11 @@
 #!/bin/bash
 
 TEMPDIR="./autoTestOutput"
+OLDFILE="$TEMPDIR/collected_result.txt"
+if [ -f "$OLDFILE" ]; then
 rm "$TEMPDIR/collected_result.txt"
+fi
+
 # Iterate over each temporary result file in the directory
 for TEMPFILE in "$TEMPDIR"/*_result_temp.txt
 do
