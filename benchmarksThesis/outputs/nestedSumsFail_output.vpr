@@ -1,0 +1,11 @@
+import "nestedSumsFail_summationDomain.vpr"
+method try() 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+
+    // Summation with nested sums
+    assert genericSum0(0, 2) + (k*(2-0+1))) == 18
+}

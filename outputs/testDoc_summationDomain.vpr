@@ -1,0 +1,144 @@
+
+domain simpleSums {
+// uninterpreted function
+function simplesum(i: Int, N: Int): Int
+
+axiom emptySum {
+    simplesum(0,0) == 0
+}
+
+axiom iGreaterThanN  {
+    forall i:Int, N:Int::
+        i > N ==> simplesum(i,N) == 0
+}
+
+axiom rightRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) == simplesum(i,N-1) + N
+}
+
+axiom leftRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) == i + simplesum(i+1,N)
+}
+
+
+}
+
+
+
+
+
+domain setifysimpleSum0 {
+    // uninterpreted function
+    function setifySumsimpleSum0( lowerBound:Int, upperBound:Int) : Set[Int]
+
+    axiom setifyInSetsimpleSum0 {
+        forall lowerBound:Int,upperBound: Int, i: Int ::
+            lowerBound<= i <=upperBound ==> i in setifySumsimpleSum0(lowerBound,upperBound)
+    }
+    
+    axiom setifyNotInSetsimpleSum0 {
+        forall lowerBound:Int,upperBound: Int, i : Int ::
+            i < lowerBound || i > upperBound ==> !( i in setifySumsimpleSum0(lowerBound,upperBound))
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain genericSumi1 {
+    // uninterpreted function
+    function genericSum1( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum1{
+    genericSum1(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum1 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum1(i,N) == 0
+}
+
+// axiom rightRecursionGenericSum1 {
+//     forall i:Int, N: Int :: 
+//         0 <= i < N ==> genericSum1(i,N) == genericSum1(i,N-1) + 5-N
+// }
+
+// axiom leftRecursionGenericSum1 {
+//     forall i:Int, N: Int :: 
+//         0 <= i < N ==> genericSum1(i,N) == 5-i + genericSum1(i+1,N)
+// }
+
+    }
+    
+    
+    
+    
+    
+
+domain setifygenericSum1 {
+    // uninterpreted function
+    function setifySumgenericSum1( lowerBound:Int, upperBound:Int) : Set[Int]
+
+    axiom setifyInSetgenericSum1 {
+        forall lowerBound:Int,upperBound: Int, i: Int ::
+            lowerBound<= i <=upperBound ==> 5-i in setifySumgenericSum1(lowerBound,upperBound)
+    }
+    
+    axiom setifyNotInSetgenericSum1 {
+        forall lowerBound:Int,upperBound: Int, i : Int ::
+            i < lowerBound || i > upperBound ==> !( 5-i in setifySumgenericSum1(lowerBound,upperBound))
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain setifysimpleSum2 {
+    // uninterpreted function
+    function setifySumsimpleSum2( lowerBound:Int, upperBound:Int) : Set[Int]
+
+    axiom setifyInSetsimpleSum2 {
+        forall lowerBound:Int,upperBound: Int, i: Int ::
+            lowerBound<= i <=upperBound ==> i in setifySumsimpleSum2(lowerBound,upperBound)
+    }
+    
+    axiom setifyNotInSetsimpleSum2 {
+        forall lowerBound:Int,upperBound: Int, i : Int ::
+            i < lowerBound || i > upperBound ==> !( i in setifySumsimpleSum2(lowerBound,upperBound))
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain setifysimpleSum3 {
+    // uninterpreted function
+    function setifySumsimpleSum3( lowerBound:Int, upperBound:Int) : Set[Int]
+
+    axiom setifyInSetsimpleSum3 {
+        forall lowerBound:Int,upperBound: Int, i: Int ::
+            lowerBound<= i <=upperBound ==> i in setifySumsimpleSum3(lowerBound,upperBound)
+    }
+    
+    axiom setifyNotInSetsimpleSum3 {
+        forall lowerBound:Int,upperBound: Int, i : Int ::
+            i < lowerBound || i > upperBound ==> !( i in setifySumsimpleSum3(lowerBound,upperBound))
+    }
+
+    }
+    
+    
+    
+    
+    

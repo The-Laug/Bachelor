@@ -1,0 +1,16 @@
+import "sumFromIntroduction_summationDomain.vpr"
+method sum_zero_to_n(n: Int) returns (res: Int)
+    requires 0 <= n
+    ensures res == n * (n+1) / 2
+{    
+    res := 0
+    var i: Int := 0
+    while (i <= n)
+        invariant 0 <= i
+        invariant i <= n + 1
+        invariant res == simplesum(0, i-1)
+    {
+        res := res + i
+        i := i + 1
+    }
+}

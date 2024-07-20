@@ -1,0 +1,46 @@
+
+domain setifygenericSum0 {
+// uninterpreted function
+function setifySumgenericSum01() : Multiset[Int]
+
+axiom setifyInSetgenericSum0 {
+    forall j: Int ::
+        0<= j <=10 ==> (10-j in setifySumgenericSum01())==1
+}
+
+axiom setifyNotInSetgenericSum0 {
+    forall j : Int ::
+        j < 0 ==> ( (10-j in setifySumgenericSum01())==0 )
+}
+
+axiom setifyAlsoNotInSetgenericSum0 {
+    forall j : Int ::
+        j > 10 ==> ( (10-j in setifySumgenericSum01())==0 )
+}
+
+}
+    
+
+
+domain setifysimpleSum1 {
+// uninterpreted function
+function setifySumsimpleSum12() : Multiset[Int]
+
+axiom setifyInSetsimpleSum1 {
+    forall j: Int ::
+        0<= j <=10 ==> (j in setifySumsimpleSum12())==1
+}
+
+axiom setifyNotInSetsimpleSum1 {
+    forall j : Int ::
+        j < 0 ==> ( (j in setifySumsimpleSum12())==0 )
+}
+
+axiom setifyAlsoNotInSetsimpleSum1 {
+    forall j : Int ::
+        j > 10 ==> ( (j in setifySumsimpleSum12())==0 )
+}
+
+}
+
+    

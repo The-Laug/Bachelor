@@ -1,0 +1,17 @@
+import "testDoc11_summationDomain.vpr"
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+    var a: Int
+    assume a== 1/2
+    assume 0 < i < N;
+    // assert 2+2==3
+
+    assert powerSum2(i,21) + simplesum(i, 21) > 2 
+    assert geometricSum0(i,21) > 2 
+    assert genericSum0(i, 21) > 2 
+
+}

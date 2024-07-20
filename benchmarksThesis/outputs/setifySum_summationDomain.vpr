@@ -1,0 +1,23 @@
+
+    domain setifysimpleSum0 {
+    // uninterpreted function
+    function setifySumsimpleSum01() : Multiset[Int]
+
+    axiom setifyInSetsimpleSum0 {
+        forall n: Int ::
+            i<= n <=21 ==> (n in setifySumsimpleSum01())==1
+    }
+    
+    axiom setifyNotInSetsimpleSum0 {
+        forall n : Int ::
+            n < i ==> ( (n in setifySumsimpleSum01())==0 )
+    }
+
+    axiom setifyAlsoNotInSetsimpleSum0 {
+        forall n : Int ::
+            n > 21 ==> ( (n in setifySumsimpleSum01())==0 )
+    }
+
+    }
+        
+    

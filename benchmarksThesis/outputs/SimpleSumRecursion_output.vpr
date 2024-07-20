@@ -1,0 +1,13 @@
+import "SimpleSumRecursion_summationDomain.vpr"
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+
+    // assert 2+2==3
+
+    assert simplesum(0, 10) == 55    
+
+}

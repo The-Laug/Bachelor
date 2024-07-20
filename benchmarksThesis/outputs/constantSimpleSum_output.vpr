@@ -1,0 +1,15 @@
+import "constantSimpleSum_summationDomain.vpr"
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+    var j: Int
+
+    assume 0 < i < N;
+
+    // Simple linear summation
+    assert simplesum(0, 10) == 55
+    assert 2 * simplesum(1, 5) == 30
+
+  
+}

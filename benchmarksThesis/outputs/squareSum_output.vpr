@@ -1,0 +1,17 @@
+import "squareSum_summationDomain.vpr"
+
+method sumSquare(n: Int) returns (res: Int) 
+    requires 0 <= n
+    ensures res == powerSum2(0,n)
+{
+    res :=0
+    var i:Int := 0
+    while (i <= n)
+        invariant 0 <= i 
+        invariant i <= n+1
+        invariant res == powerSum2(0,i-1)
+        {
+            res := res + i*i
+            i := i+1
+        }
+}

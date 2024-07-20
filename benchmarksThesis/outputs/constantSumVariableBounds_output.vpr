@@ -1,0 +1,10 @@
+import "constantSumVariableBounds_summationDomain.vpr"
+method try() 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+
+    assert (3*(N-1+1)) == 3* N
+}

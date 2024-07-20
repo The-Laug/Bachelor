@@ -1,0 +1,14 @@
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+    // assert 2+2==3
+    // assert simplesum(5,10) > powersum(5,10,2)
+    assert for i=0 to 5 sum (i) == for i=0 to 5 sum (5-i) 
+    assert for i=2 to 205 sum (i) > for i=3 to 205 sum (i)
+    
+}

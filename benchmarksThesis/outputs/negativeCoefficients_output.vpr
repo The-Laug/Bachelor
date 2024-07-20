@@ -1,0 +1,14 @@
+import "negativeCoefficients_summationDomain.vpr"
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+    var j: Int
+
+    assume 0 < i < N;
+    // Edge casesn
+
+    // Negative coefficients
+    assert simplesum(0, 4) - 2 * powerSum2(0,4) == -50
+
+}
