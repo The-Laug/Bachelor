@@ -1,0 +1,29 @@
+import "testDoc5_summationDomain.vpr"
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+
+    // Summation with constants
+    assert (2*(4-0+1)) == 10
+    assert (5*(3-1+1)) == 15
+
+    // Mixed terms
+    // assert powerSum2(0,3) + 3 * simplesum(0, 3) + (1*(3-0+1)) == 25
+    // assert powerSum2(0,3) == 14
+    // assert 3 * simplesum(0, 3) == 18
+    // assert (1*(3-0+1)) == 4
+    // assert 4+1
+    // assert 4 * powerSum2(1,4) - simplesum(1, 4) + (2*(4-1+1)) == 82
+
+    // Large bounds
+    assert simplesum(0, 100) == 5050
+    assert powerSum2(0,50) == 42925
+    assert powerSum3(0,8) == 1296
+
+
+    // Invalid assertion (for error handling)
+    assert simplesum(0, 5) == 100  // Incorrect sum
+}

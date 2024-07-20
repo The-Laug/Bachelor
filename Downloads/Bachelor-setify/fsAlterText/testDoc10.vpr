@@ -1,0 +1,19 @@
+method try() 
+{
+    var i: Int
+    var N: Int
+    var p: Int
+    var a: Int
+    assume 0<i<N
+    assert for j=10 to 25 sum (j^j)
+    assert for j=2 to 25 sum (a*j+j^2+22*a)> a
+    assert for j=i to N sum (a)> a
+    assert for j=i to N sum (j+1)> a
+    assert (2 in for j=0 to 10 setsum (j)) >=1
+    assert (Multiset(2) subset for j=0 to 10 setsum (2))
+    assert (2 in for j=0 to 10 setsum (2)) > 0
+    assert Multiset(2) subset for j=0 to 3 setsum (2) 
+    assert for j=0 to 3 setsum (2) == Multiset(2,2,2)
+    assert Multiset(j*j) subset for j=0 to 5 setsum (j^2) 
+    assert Multiset(j*j) subset for j=0 to 5 setsum (j^a) 
+    }

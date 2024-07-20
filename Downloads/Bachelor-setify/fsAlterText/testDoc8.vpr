@@ -1,0 +1,51 @@
+method try() 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+
+    // Basic arithmetic summation
+    assert for j=1 to 10 sum (j + 1) == 65
+    assert for j=0 to 5 sum (j * 2) == 30
+
+    // Higher degree polynomials
+    assert for j=0 to 5 sum (j^3 + 2*j^2 + j + 1) == 341
+    assert for j=1 to 4 sum (3*j^4 + 2*j^3 + j^2 + 1) == 1600
+
+    // Summation with mixed variables
+    assert for j=1 to 3 sum (j*i + 2*j*N) == 21*i + 42*N
+    assert for j=0 to i sum (j*N + i*j) == N*i*(i+1)/2 + i*i*(i+1)/2
+
+    // Summation with nested sums
+    assert for j=0 to 2 sum (for k=0 to 2 sum (j+k)) == 18
+    assert for j=1 to 3 sum (for k=1 to 3 sum (j*k)) == 90
+
+    // Edge cases and bounds
+    assert for j=0 to 0 sum (j) == 0
+    assert for j=5 to 5 sum (j^2) == 25
+
+    // Summation with constants and variables
+    assert for j=0 to 4 sum (N + j + 1) == 5*N + 15
+    assert for j=0 to i sum (j + N) == (i+1)*N + i*(i+1)/2
+
+    // Complex expressions
+    assert for j=0 to 3 sum ((j^2 + 1)*(j + 2)) == 74
+    assert for j=1 to 5 sum ((j^2 - j + 1)*(j + 3)) == 230
+
+    // Summation with conditions (if supported)
+    // assert for j=0 to 10 sum (if j % 2 == 0 then j else 0) == 30
+
+    // Large bounds and factorial terms (if supported)
+    assert for j=1 to 10 sum (j!) == 4037913  // 1! + 2! + 3! + ... + 10!
+
+    // Negative terms
+    assert for j=-5 to 5 sum (j) == 0
+    assert for j=-3 to 3 sum (j^2) == 28
+
+    // Summation with exponential functions (if supported)
+    // assert for j=0 to 3 sum (2^j) == 15
+
+    // Product of summations
+    assert for j=0 to 3 sum (j) * for k=0 to 2 sum (k) == 36
+}

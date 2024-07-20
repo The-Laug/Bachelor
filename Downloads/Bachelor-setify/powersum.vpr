@@ -1,0 +1,45 @@
+import "simplesums.vpr"
+
+domain powersums {
+    // uninterpreted function i= lower bound, N = Higher bound, exp = exponent
+    function powersum(i: Int, N: Int, exp:Int): Int
+
+    axiom {
+        forall i: Int, N: Int ::
+        powersum(i,N,0) == N
+    }
+
+    axiom axiom1 {
+        forall exp: Int, i: Int, N: Int ::
+            (i == N) ==> powersum(i,N,exp) == 0
+    }
+
+
+    axiom axiom2 {
+        forall i:Int, N: Int, exp: Int :: 
+            powersum(i,N,exp) == powersum(N,i,exp)
+    }
+
+    axiom axiom3 {
+        forall i:Int, N: Int, exp: Int ::
+            exp==1 ==> powersum(i,N,exp) == simplesum(N,i)
+    }
+
+
+    // axiom faulhaber {
+    //     forall i:Int, N: Int, exp: Int :: 
+    //         powersum(i,N,exp) == powersum(N,i,exp)
+    // }
+    // axiom axiom3 {
+    //     forall exp: Int,i: Int, N: Int ::
+    //         ((exp == 2) && (0<i<=N)) ==> powersum(i,N,exp) == powersum(i,N-1,exp) + N*N
+    // }
+
+    // axiom axiom4 {
+    //     forall exp: Int,i: Int, N: Int ::
+    //         (exp == 2) ==> powersum(i,N,exp) == powersum(i,N-1,exp) + N*N
+    // }
+
+
+
+}

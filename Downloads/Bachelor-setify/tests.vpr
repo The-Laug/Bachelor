@@ -1,0 +1,17 @@
+import "relations.vpr"
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+    // assert 2+2==3
+    // assert simplesum(5,10) > powersum(5,10,2)
+    assert powersum(5,10,1) == simplesum(5,10)
+    assert powersum(5,10,2) >= simplesum(5,10)
+    assert simplesum(1,4) <= simplesum(2,10)
+    assert simplesum(2,3) <= simplesum(3,4)
+    assert 2*2==4
+}

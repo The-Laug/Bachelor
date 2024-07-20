@@ -1,0 +1,100 @@
+// method sum(i: Int,N: Int,exp: Int) returns (res: Int)
+// {
+//     // Placeholder
+// }
+
+domain benchmarkSum {
+    // uninterpreted function
+    function sum(i: Int, N: Int): Int
+}
+domain benchmarkSumExp {
+    // uninterpreted function
+    function sumExp(i: Int, N: Int,exp : Int): Int
+}
+
+method sumZeroToN(n: Int) returns (res: Int) 
+    requires 0 <= n
+    ensures res == sum(0,n) // 0 + 1 + 2 + ... + n
+{
+    res :=0
+    var i:Int := 0
+    while (i <= n)
+        invariant 0 <= i 
+        invariant i <= n+1
+        invariant res == sum(0,i-1)
+        {
+            res := res + i 
+            i := i+1
+        }
+}
+
+
+method sumSquare(n: Int) returns (res: Int) 
+    requires 0 <= n
+    ensures res == sum(0,n) // 0 + 1 + 2 + ... + n
+{
+    res :=0
+    var i:Int := 0
+    while (i <= n)
+        invariant 0 <= i 
+        invariant i <= n+1
+        invariant res == sum(0,i-1)
+        {
+            res := res + i*i
+            i := i+1
+        }
+}
+
+method sumReciproc(n: Int) returns (res: Int) 
+    requires 0 <= n
+    ensures res == sum(0,n) // 0 + 1 + 2 + ... + n
+{
+    res :=0
+    var i:Int := 0
+    while (i <= n)
+        invariant 0 <= i 
+        invariant i <= n+1
+        invariant res == sum(0,i-1)
+        {
+            res := res + 1/i
+            i := i+1
+        }
+}
+
+method sumConditional(n: Int) returns (res: Int) 
+    requires 0 <= n
+    ensures res == sum(0,n) // 0 + 1 + 2 + ... + n
+{
+    res :=0
+    var i:Int := 0
+    var condition: Bool
+    while (i <= n)
+        invariant 0 <= i 
+        invariant i <= n+1
+        invariant res == sum(0,i-1)
+        {
+            if (condition) 
+            {
+            res := res + i
+            i := i+1
+            }
+        }
+}
+
+
+method relations(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+    var j: Int
+    var M: Int
+    var exp1: Int
+    var exp2: Int
+    assume 0 < i < N;
+    // assert 2+2==3
+    // assert simplesum(5,10) > powersum(5,10,2)
+    assert sumExp(i,N,exp1) == sumExp(i,N,exp2) // Different expressions within the sum
+    assert sumExp(i,N,exp1) == sumExp(i+x,N+x,exp1) // Same expression translated summation interval of same siz
+    assert sumExp(i,N,exp1) == sumExp(j,M,exp1) // Same expression, different interval
+    assert sumExp(i,N,exp1) == sumExp(j,M,exp2) // Different expression, different interval
+}

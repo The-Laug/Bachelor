@@ -1,0 +1,52 @@
+import "testDoc8_summationDomain.vpr"
+method try() 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+
+    // Basic arithmetic summation
+    assert simplesum(1, 10) + (1*(10-1+1)) == 65
+    assert simplesum(0, 5) * (2*(5-0+1)) == 30
+
+    // Higher degree polynomials
+    assert powerSum3(0,5) + (2*(5-0+1)) * powerSum2(0,5) + simplesum(0, 5) + (1*(5-0+1)) == 341
+    assert 3 * powerSum4(1,4) + (2*(4-1+1)) * powerSum3(1,4) + powerSum2(1,4) + (1*(4-1+1)) == 1600
+
+    // Summation with mixed variables
+    assert simplesum(1, 3) * (i*(1-3+1)) + (2*(3-1+1)) * simplesum(1, 3) * (N*(1-3+1)) == 21*i + 42*N
+    assert simplesum(0, i) * (N*(0-i+1)) + (i*(0-i+1)) * simplesum(0, i) == N*i*(i+1)/2 + i*i*(i+1)/2
+
+    // Summation with nested sums
+    // assert genericSum0(0, 2) + (k*(0-2+1))) == 18
+    // assert genericSum1(1, 3) * (k*(1-3+1))) == 90
+
+    // // Edge cases and bounds
+    // assert simplesum(0, 0) == 0
+    // assert powerSum2(5,5) == 25
+
+    // // Summation with constants and variables
+    // assert (N*(0-4+1)) + simplesum(0, 4) + (1*(4-0+1)) == 5*N + 15
+    // assert simplesum(0, i) + (N*(0-i+1)) == (i+1)*N + i*(i+1)/2
+
+    // // Complex expressions
+    // assert (j*(j*(3-0) + (1*(3-0+1))*(j + 2)) == 74
+    // assert (j*(j*(5-1) - simplesum(1, 5) + (1*(5-1+1))*(j + 3)) == 230
+
+    // // Summation with conditions (if supported)
+    // // assert genericSum2(0, 10) == 30
+
+    // // Large bounds and factorial terms (if supported)
+    // assert genericSum3(1, 10) == 4037913  // 1! + 2! + 3! + ... + 10!
+
+    // // Negative terms
+    // assert simplesum(-5, 5) == 0
+    // assert powerSum2(-3,3) == 28
+
+    // // Summation with exponential functions (if supported)
+    // // assert genericSum4(0, 3) == 15
+
+    // // Product of summations
+    // assert simplesum(0, 3) * simplesum(0, 2) == 36
+}

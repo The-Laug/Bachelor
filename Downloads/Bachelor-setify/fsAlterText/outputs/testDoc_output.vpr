@@ -1,0 +1,33 @@
+import "testDoc_summationDomain.vpr"
+
+domain compareSums {
+    axiom {
+        forall i:Int , N:Int ::
+            (setifySumsimpleSum0(i,N) == setifySumgenericSum1(i,N)) ==> simplesum(i,N) == genericSum1(i,N)
+    }
+    // axiom {
+    //     forall i:Int , N:Int ::
+    //         (setifySumsimpleSum0(i,N) == setifySumgenericSum1(i,N)) ==> simplesum(i,N) == genericSum1(i,N)
+    // }
+}
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+    // assert 2+2==3
+    // assert simplesum(5,10) > powersum(5,10,2)
+    // assert genericSum1(0, 5) == genericSum1(0, 4)
+    // assert simplesum(0,1) == simplesum(0,0) +1 
+    // assert genericSum1(0, 1) == genericSum1(0, 0) +4
+    assert setifySumsimpleSum0(0,5) == setifySumgenericSum1(0,5)
+    // assert simplesum(0, 1) == genericSum1(0, 1) 
+    assert simplesum(0, 5) == genericSum1(0, 5) 
+    assert simplesum(0, 4) == genericSum1(0, 4) 
+    assert simplesum(2, 205) > simplesum(3, 205)
+    assert false
+    
+}

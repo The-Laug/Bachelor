@@ -1,0 +1,13 @@
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+    // assert 2+2==3
+
+    assert for j=i to 21 sum (2*N^2*j) == 231    
+
+}

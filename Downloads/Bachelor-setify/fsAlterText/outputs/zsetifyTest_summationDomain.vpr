@@ -1,0 +1,160 @@
+
+domain simpleSums {
+// uninterpreted function
+function simplesum(i: Int, N: Int): Int
+
+axiom emptySum {
+    simplesum(0,0) == 0
+}
+
+axiom iGreaterThanN  {
+    forall i:Int, N:Int::
+        i > N ==> simplesum(i,N) == 0
+}
+
+axiom rightRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) == simplesum(i,N-1) + N
+}
+
+axiom leftRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) == i + simplesum(i+1,N)
+}
+
+
+}
+
+
+
+
+
+domain setifysimpleSum0 {
+    // uninterpreted function
+    function setifySumsimpleSum01() : Multiset[Int]
+
+    axiom setifyInSetsimpleSum0 {
+        forall i: Int ::
+            0<= i <=j ==> (i in setifySumsimpleSum01())==1
+    }
+    
+    axiom setifyNotInSetsimpleSum0 {
+        forall i : Int ::
+            i < 0 ==> !( (i in setifySumsimpleSum01())==1 )
+    }
+
+    axiom setifyAlsoNotInSetsimpleSum0 {
+        forall i : Int ::
+            i > j ==> !( (i in setifySumsimpleSum01())==1 )
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain setifysimpleSum1 {
+    // uninterpreted function
+    function setifySumsimpleSum12() : Multiset[Int]
+
+    axiom setifyInSetsimpleSum1 {
+        forall i: Int ::
+            0<= i <=j+2 ==> (i in setifySumsimpleSum12())==1
+    }
+    
+    axiom setifyNotInSetsimpleSum1 {
+        forall i : Int ::
+            i < 0 ==> !( (i in setifySumsimpleSum12())==1 )
+    }
+
+    axiom setifyAlsoNotInSetsimpleSum1 {
+        forall i : Int ::
+            i > j+2 ==> !( (i in setifySumsimpleSum12())==1 )
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain setifysimpleSum2 {
+    // uninterpreted function
+    function setifySumsimpleSum23() : Multiset[Int]
+
+    axiom setifyInSetsimpleSum2 {
+        forall j: Int ::
+            2<= j <=22 ==> (j in setifySumsimpleSum23())==1
+    }
+    
+    axiom setifyNotInSetsimpleSum2 {
+        forall j : Int ::
+            j < 2 ==> !( (j in setifySumsimpleSum23())==1 )
+    }
+
+    axiom setifyAlsoNotInSetsimpleSum2 {
+        forall j : Int ::
+            j > 22 ==> !( (j in setifySumsimpleSum23())==1 )
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain setifysimpleSum3 {
+    // uninterpreted function
+    function setifySumsimpleSum34() : Multiset[Int]
+
+    axiom setifyInSetsimpleSum3 {
+        forall j: Int ::
+            0<= j <=19 ==> (j in setifySumsimpleSum34())==1
+    }
+    
+    axiom setifyNotInSetsimpleSum3 {
+        forall j : Int ::
+            j < 0 ==> !( (j in setifySumsimpleSum34())==1 )
+    }
+
+    axiom setifyAlsoNotInSetsimpleSum3 {
+        forall j : Int ::
+            j > 19 ==> !( (j in setifySumsimpleSum34())==1 )
+    }
+
+    }
+    
+    
+    
+    
+    
+
+domain setifysimpleSum4 {
+    // uninterpreted function
+    function setifySumsimpleSum45() : Multiset[Int]
+
+    axiom setifyInSetsimpleSum4 {
+        forall j: Int ::
+            20<= j <=25 ==> (j in setifySumsimpleSum45())==1
+    }
+    
+    axiom setifyNotInSetsimpleSum4 {
+        forall j : Int ::
+            j < 20 ==> !( (j in setifySumsimpleSum45())==1 )
+    }
+
+    axiom setifyAlsoNotInSetsimpleSum4 {
+        forall j : Int ::
+            j > 25 ==> !( (j in setifySumsimpleSum45())==1 )
+    }
+
+    }
+    
+    
+    
+    
+    

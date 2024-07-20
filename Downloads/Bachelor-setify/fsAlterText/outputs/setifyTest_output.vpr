@@ -1,0 +1,10 @@
+import "setifyTest_summationDomain.vpr"
+method try() 
+{
+    var i: Int
+    var N: Int
+    var p: Int
+    var a: Int
+    assume 0<i<N
+    assert setifySumsimpleSum0(0,25) == setifySumconstantSum1(0,25) - setifySumsimpleSum2(0,25)
+    }
