@@ -1,0 +1,18 @@
+import "negativeTerms_summationDomain.vpr"
+method try() 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+
+    // Negative terms
+    assert simplesum(-5, -4) == -9
+    assert simplesum(-5, 0) == -15
+    assert simplesum(0, 5) == 15
+    assert simplesum(-5, 5) == 0
+    assert simplesum(-5, 10) == simplesum(-5, 0) + simplesum(0, 10)
+    assert simplesum(0, 20) == simplesum(0, 10) + simplesum(10, 20)
+
+
+}

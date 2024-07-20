@@ -1,0 +1,17 @@
+method try() 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+
+    // Negative terms
+    assert for j=-5 to -4 sum (j) == -9
+    assert for j=-5 to 0 sum (j) == -15
+    assert for j=0 to 5 sum (j) == 15
+    assert for j=-5 to 5 sum (j) == 0
+    assert for j=-5 to 10 sum (j) == for j=-5 to 0 sum (j) + for j=0 to 10 sum (j)
+    assert for j=0 to 20 sum (j) == for j=0 to 10 sum (j) + for j=10 to 20 sum (j)
+
+
+}

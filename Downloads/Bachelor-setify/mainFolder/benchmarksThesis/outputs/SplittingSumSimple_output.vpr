@@ -1,0 +1,15 @@
+import "SplittingSumSimple_summationDomain.vpr"
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+    // assert 2+2==3
+
+    // assert 22333 * simplesum(0, 2) == 2
+    assert simplesum(0, 58) + simplesum(0, 58) ==  simplesum(0, 58) + simplesum(0, 58)
+
+}

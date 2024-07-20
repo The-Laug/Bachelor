@@ -1,0 +1,15 @@
+import "edgeCases_summationDomain.vpr"
+method try() 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+
+
+    // Edge cases and bounds
+    assert simplesum(0, 0) == 0
+    assert powerSum2(5,5) == 25
+
+    
+}

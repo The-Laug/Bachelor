@@ -1,0 +1,31 @@
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+    var a: Multiset[Int]
+    var b: Multiset[Int]
+    var c: Int
+
+
+
+    //checking variables in inner function
+    assert for n=0 to 10 sum (N*n) >2
+
+
+
+    assume 0 < i < N;
+    assume N==10
+    //heere
+    assert for n=0 to 10 setsum (n) == for n=0 to 10 setsum (10-n)
+
+
+    assert for n=0 to N setsum (n) == for n=0 to N setsum (N-n)
+    //
+    assert (13 in for n=13 to 21 setsum (n))==1
+    assert (14 in for n=13 to 21 setsum (n))==1
+    assert (14 in for n=13 to 21 setsum (n-1))==1
+    assert for n=2 to 21 setsum (2) == for n=13 to 21 setsum (n)
+
+}

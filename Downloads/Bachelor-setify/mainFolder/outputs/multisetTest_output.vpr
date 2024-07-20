@@ -1,0 +1,8 @@
+import "multisetTest_summationDomain.vpr"
+
+
+method try(x:Int, y: Int) 
+{
+    assert setifySumgenericSum01() == setifySumsimpleSum12()
+
+}

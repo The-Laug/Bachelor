@@ -1,0 +1,31 @@
+verification id: 261
+[VER] Requesting to stream verification results:
+{"msg_body":{"text":"Viper AST Constructor"},"msg_type":"copyright_report"}
+{"msg_body":[],"msg_type":"warnings_during_parsing"}
+{"msg_body":{"details":{"time":3},"status":"success"},"msg_type":"ast_construction_result"}
+{"msg_body":{"members":[{"name":"try","position":{"end":"10:2","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/constantSumVariableBounds_output.vpr","start":"2:1"},"type":"method"}]},"msg_type":"program_outline"}
+{"msg_body":{"domains":0,"fields":0,"functions":0,"methods":1,"predicates":0},"msg_type":"statistics"}
+{"msg_body":{"definitions":[{"location":{"end":"10:2","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/constantSumVariableBounds_output.vpr","start":"2:1"},"name":"try","scopeEnd":"global","scopeStart":"global","type":{"name":"Method"}},{"location":{"end":"4:15","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/constantSumVariableBounds_output.vpr","start":"4:5"},"name":"i","scopeEnd":"10:2","scopeStart":"3:1","type":{"name":"Local","viperType":{"kind":"atomic","typename":"Int"}}},{"location":{"end":"5:15","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/constantSumVariableBounds_output.vpr","start":"5:5"},"name":"N","scopeEnd":"10:2","scopeStart":"3:1","type":{"name":"Local","viperType":{"kind":"atomic","typename":"Int"}}}]},"msg_type":"program_definitions"}
+{"msg_body":{"text":"Silicon 1.1-SNAPSHOT (7287259b@(detached))"},"msg_type":"copyright_report"}
+{"msg_body":{"text":"Starting prover at location './viper_client-master/ViperToolsMacARM-2/z3/bin/z3'"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Using Z3 4.8.7 located at ./viper_client-master/ViperToolsMacARM-2/z3/bin/z3"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Starting prover at location './viper_client-master/ViperToolsMacARM-2/z3/bin/z3'"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Using Z3 4.8.7 located at ./viper_client-master/ViperToolsMacARM-2/z3/bin/z3"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Starting prover at location './viper_client-master/ViperToolsMacARM-2/z3/bin/z3'"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Using Z3 4.8.7 located at ./viper_client-master/ViperToolsMacARM-2/z3/bin/z3"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Starting prover at location './viper_client-master/ViperToolsMacARM-2/z3/bin/z3'"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Using Z3 4.8.7 located at ./viper_client-master/ViperToolsMacARM-2/z3/bin/z3"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Starting prover at location './viper_client-master/ViperToolsMacARM-2/z3/bin/z3'"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Using Z3 4.8.7 located at ./viper_client-master/ViperToolsMacARM-2/z3/bin/z3"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Starting prover at location './viper_client-master/ViperToolsMacARM-2/z3/bin/z3'"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Using Z3 4.8.7 located at ./viper_client-master/ViperToolsMacARM-2/z3/bin/z3"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Starting prover at location './viper_client-master/ViperToolsMacARM-2/z3/bin/z3'"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Using Z3 4.8.7 located at ./viper_client-master/ViperToolsMacARM-2/z3/bin/z3"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Starting prover at location './viper_client-master/ViperToolsMacARM-2/z3/bin/z3'"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Using Z3 4.8.7 located at ./viper_client-master/ViperToolsMacARM-2/z3/bin/z3"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Starting prover at location './viper_client-master/ViperToolsMacARM-2/z3/bin/z3'"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"text":"Using Z3 4.8.7 located at ./viper_client-master/ViperToolsMacARM-2/z3/bin/z3"},"msg_type":"configuration_confirmation"}
+{"msg_body":{"details":{"cached":false,"entity":{"name":"try","position":{"end":"10:2","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/constantSumVariableBounds_output.vpr","start":"2:1"},"type":"method"},"time":2},"kind":"for_entity","status":"success","verifier":"silicon"},"msg_type":"verification_result"}
+{"msg_body":{"msg":"verification_termination_message"},"msg_type":"verification_termination_message"}
+{"msg_body":{"details":{"time":208},"kind":"overall","status":"success","verifier":"silicon"},"msg_type":"verification_result"}
+

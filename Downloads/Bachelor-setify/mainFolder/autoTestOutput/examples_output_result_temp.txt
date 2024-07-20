@@ -1,0 +1,5 @@
+verification id: 265
+[VER] Requesting to stream verification results:
+{"msg_body":{"text":"Viper AST Constructor"},"msg_type":"copyright_report"}
+{"msg_body":{"details":{"result":{"errors":[{"cached":false,"position":{"end":"2:24","file":"/Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/examples_output.vpr","start":"2:1"},"tag":"parser.error","text":"Parse error: could not import file (java.io.FileNotFoundException: /Users/lauge/Desktop/bachelor/mainFolder/benchmarksThesis/outputs/simplesums.vpr (No such file or directory)) (examples_output.vpr@2.1--2.24)"}],"type":"error"},"time":2},"status":"failure"},"msg_type":"ast_construction_result"}
+

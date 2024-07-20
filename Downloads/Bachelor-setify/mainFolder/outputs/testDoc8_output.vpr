@@ -1,0 +1,31 @@
+import "testDoc8_summationDomain.vpr"
+method try() 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+
+
+    // Edge cases and bounds
+    assert simplesum(0, 0) == 0
+    assert powerSum2(5,5) == 25
+
+    // Summation with constants and variables
+    assert (N*(4-0+1)) + simplesum(0, 4) + (1*(4-0+1)) == 5*N + 15
+    assert simplesum(0, i) + (N*(i-0+1)) == (i+1)*N + i*(i+1)/2
+
+
+    // // Large bounds and factorial terms (if supported)
+    // assert genericSum0(1, 10) == 4037913  // 1! + 2! + 3! + ... + 10!
+
+    // // Negative terms
+    // assert simplesum(-5, 5) == 0
+    // assert powerSum2(-3,3) == 28
+
+    // // Summation with exponential functions (if supported)
+    // // assert geometricSum2(0,3) == 15
+
+    // // Product of summations
+    // assert simplesum(0, 3) * simplesum(0, 2) == 36
+}

@@ -1,0 +1,18 @@
+import "variableInclusionTest_summationDomain.vpr"
+method try() 
+{
+    var a: Int
+    var b: Int
+    var c: Int
+    var d: Int
+    var e: Int
+    var f: Int
+    var j:Int
+    assume a>b 
+    assume j< -5
+    assert simplesum(a, b) == simplesum(0, j+2)
+
+    // assume 0<i<N
+    // assert setifySumsimpleSum01() subset ( setifySumsimpleSum12() union setifySumsimpleSum23() )
+    }
+    // assert setifySumconstantSum34() == setifySumconstantSum45() union setifySumconstantSum56()

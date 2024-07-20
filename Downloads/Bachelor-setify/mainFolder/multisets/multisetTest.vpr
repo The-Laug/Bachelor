@@ -1,0 +1,7 @@
+
+
+method try(x:Int, y: Int) 
+{
+    assert for j=0 to 10 setsum (10-j) == for j=0 to 10 setsum (j)
+
+}

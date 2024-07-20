@@ -1,0 +1,164 @@
+
+domain simpleSums {
+// uninterpreted function
+function simplesum(i: Int, N: Int): Int
+
+axiom emptySum {
+    simplesum(0,0) == 0
+}
+
+axiom iGreaterThanN  {
+    forall i:Int, N:Int::
+        i > N ==> simplesum(i,N) == 0
+}
+
+axiom rightRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i <= N ==> simplesum(i,N) == simplesum(i,N-1) + N
+}
+
+axiom leftRecursion  {
+    forall i:Int, N: Int :: 
+        0 <= i <= N ==> simplesum(i,N) == i + simplesum(i+1,N)
+}
+
+axiom rightRecursionNeg  {
+    forall i:Int, N: Int :: 
+        i <= N <=0 ==> simplesum(i,N) == simplesum(i,N-1) + N
+}
+
+axiom leftRecursionNeg  {
+    forall i:Int, N: Int :: 
+        i <= N <=0  ==> simplesum(i,N) == i + simplesum(i+1,N)
+}
+
+axiom closedForm  {
+    forall  N: Int :: 
+        simplesum(1,N) == (N*(N+1))/2
+}
+
+axiom positiveTerms  {
+    forall  i:Int, N: Int :: 
+        0 <= i < N ==> simplesum(i,N) >= i
+}
+
+axiom largerIndex  {
+    forall  i:Int, N: Int, N2: Int :: 
+        0 <= i < N < N2 ==> simplesum(i,N) <= simplesum(i,N2)
+}
+
+axiom indexShiftOnZero  {
+    forall  i:Int, N: Int :: 
+        i < 0 < N ==> simplesum(i,N) == simplesum(i,0) + simplesum(0,N)
+}
+
+
+}
+
+
+
+
+
+domain powerSumDomain2 {
+// uninterpreted function
+function powerSum2(i: Int, N: Int): Int
+
+axiom emptyPowerSum2{
+    powerSum2(0,0) == 0
+}
+
+axiom iGreaterThanNPowerSum2 {
+    forall i:Int, N:Int::
+        i > N ==> powerSum2(i,N) == 0
+}
+
+axiom rightRecursionPowerSum2 {
+    forall i:Int, N: Int :: 
+        0 <= i <= N ==> powerSum2(i,N) == powerSum2(i,N-1) + N*N
+}
+
+axiom leftRecursionPowerSum2 {
+    forall i:Int, N: Int :: 
+        0 <= i <= N ==> powerSum2(i,N) == i*i + powerSum2(i+1,N)
+}
+
+axiom positiveTermsPowerSum2  {
+    forall  i:Int, N: Int :: 
+        0 <= i < N ==> powerSum2(i,N) >= i*i
+}
+
+axiom largerIndexPowerSum2  {
+    forall  i:Int, N: Int, N2: Int :: 
+        0 <= i < N < N2 ==> powerSum2(i,N) <= powerSum2(i,N2)
+}
+
+axiom indexShiftOnZeroPowerSum2  {
+    forall  i:Int, N: Int :: 
+        i < 0 < N ==> powerSum2(i,N) == powerSum2(i,0) + powerSum2(0,N)
+}
+
+}
+
+
+
+
+
+domain genericSumj0 {
+    // uninterpreted function
+    function genericSum0( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum0{
+    genericSum0(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum0 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum0(i,N) == 0
+}
+}
+// axiom rightRecursionGenericSum0 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum0(i,N) == genericSum0(i,N-1) + N!
+// }
+
+// axiom leftRecursionGenericSum0 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum0(i,N) == i! + genericSum0(i+1,N)
+// }
+
+//     }
+    
+    
+    
+    
+
+
+domain genericSumj1 {
+    // uninterpreted function
+    function genericSum1( lowerBound:Int, upperBound:Int) : Int
+
+axiom emptyGenericSum1{
+    genericSum1(0,0) == 0
+}
+
+axiom iGreaterThanNGenericSum1 {
+    forall i:Int, N:Int::
+        i > N ==> genericSum1(i,N) == 0
+}
+}
+// axiom rightRecursionGenericSum1 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum1(i,N) == genericSum1(i,N-1) + 2^N
+// }
+
+// axiom leftRecursionGenericSum1 {
+//     forall i:Int, N: Int :: 
+//         0 <= i <= N ==> genericSum1(i,N) == 2^i + genericSum1(i+1,N)
+// }
+
+//     }
+    
+    
+    
+    
+

@@ -1,0 +1,9 @@
+method try(x:Int, y: Int) 
+{
+    // Large bounds
+    assert for j=0 to 100 sum (j) == 5050
+    assert for j=0 to 50 sum (j^2) == 42925
+    assert for j=0 to 8 sum (j^3) == 1296
+
+
+}

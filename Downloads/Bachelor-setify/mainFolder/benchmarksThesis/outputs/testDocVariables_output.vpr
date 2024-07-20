@@ -1,0 +1,18 @@
+import "testDocVariables_summationDomain.vpr"
+
+
+method try(x:Int, y: Int) 
+{
+    var i: Int
+    var N: Int
+    var a: Multiset[Int]
+    var b: Multiset[Int]
+    var c: Int
+    assume 0<1<N
+
+
+    //checking variables in inner function
+    assert 2 * N * simplesum(0, 10) >2
+
+
+}

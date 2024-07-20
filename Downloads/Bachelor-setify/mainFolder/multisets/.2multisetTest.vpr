@@ -1,0 +1,21 @@
+method try()
+{
+    var n: Int
+    assume n > 0
+ 
+    var s1: Multiset[Int]
+    var s2: Multiset[Int]
+    var s3: Multiset[Int]
+    assume forall j:Int :: (0<=j<=n ==> (j in s1)==1)
+    assume forall j:Int :: (j < 0) ==> (j in s1)==0  
+    assume forall j:Int :: (j > n) ==> (j in s1)==0
+    // s1 is the Multiset {0,1,2}
+ 
+    assume forall j:Int :: 3<=j<=5 ==> (j in s2)==1 // s2 is the Multiset {3,4,5}
+    assume forall j:Int :: 0<=j<=2*n ==> (j in s3)==1 // s1 is the Multiset {0,1,2,3,4,5}
+    //assert Multiset(0,1,2) subset s1 // sanity checks
+    //assert Multiset(0,1,2,3,4,5) subset s3 // sanity checks
+    //assert Multiset(3) subset s1 // This fails
+ 
+    assert s1 subset s3
+}

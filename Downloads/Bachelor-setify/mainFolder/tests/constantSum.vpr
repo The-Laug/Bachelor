@@ -1,0 +1,19 @@
+
+method try() 
+{
+    var i: Int
+    var N: Int
+    var z: Int
+    var x: Int
+    var y: Int
+
+
+    assume 0 < i < N;
+
+    // Summation with constants
+    assert for j=0 to 4 sum (2) == 2*(4-0+1)
+    assert for j=0 to 4 sum (2*j) == for j=0 to 4 sum (j) * 2
+
+    // assert false
+
+}

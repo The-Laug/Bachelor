@@ -1,0 +1,17 @@
+import "setifySum_summationDomain.vpr"
+
+method try() 
+{
+    var i: Int
+    var N: Int
+    var z: Int
+    var x: Int
+    var y: Int
+
+
+    assume 0 < i < N;
+
+    assert setifySumsimpleSum01() > 0
+
+
+}

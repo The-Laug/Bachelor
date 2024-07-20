@@ -1,0 +1,13 @@
+method try() 
+{
+    var i: Int
+    var N: Int
+
+
+
+
+
+    // Summation with constants and variables
+    assert for j=0 to 4 sum (N + j + 1) == 5*N + 15
+    assert for j=0 to i sum (j + N) == (i+1)*N + i*(i+1)/2
+}

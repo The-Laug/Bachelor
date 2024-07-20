@@ -1,0 +1,19 @@
+import "constantSum_summationDomain.vpr"
+
+method try() 
+{
+    var i: Int
+    var N: Int
+    var z: Int
+    var x: Int
+    var y: Int
+
+
+    assume 0 < i < N;
+
+    // Summation with constants
+    assert (2*(4-0+1)) == 2*(4-0+1)
+    assert 2 * simplesum(0, 4) == simplesum(0, 4) * 2
+    // assert false
+
+}

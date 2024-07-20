@@ -1,0 +1,9 @@
+method try() 
+{
+    var i: Int
+    var N: Int
+
+    assume 0 < i < N;
+
+    assert for j=1 to N sum (3) == 3* N
+}
